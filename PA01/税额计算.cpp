@@ -7,7 +7,7 @@ int main(void) {
 
 	cin >> sale >> rate;
 	tax = sale * rate;
-	cout << setiosflags(ios::fixed) << setprecision(2) << tax;
+	cout << setiosflags(ios::fixed) << setprecision(2) << tax << endl;
 
 	return 0;
 }
