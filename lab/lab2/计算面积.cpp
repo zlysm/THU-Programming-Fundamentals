@@ -10,7 +10,7 @@ int main(void) {
 
 	switch (type) {
 	case 1:
-		cout << "please enter the radius:";  //circle
+		cout << "please enter the radius:" << endl;  //circle
 		cin >> radius;
 		area = PI * radius * radius;
 		break;
@@ -19,11 +19,14 @@ int main(void) {
 		cin >> length >> width;
 		area = length * width;
 		break;
-	default:
+	case 3:
 		cout << "please enter the side:" << endl;  //square
 		cin >> side;
 		area = side * side;
 		break;
+	default:
+		cout << "please enter a legal number!" << endl;
+		return 0;
 	}
 
 	cout << "area is " << area << endl;
