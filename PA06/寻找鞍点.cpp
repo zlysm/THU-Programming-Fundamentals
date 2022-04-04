@@ -56,6 +56,7 @@ void getSaddlePoint() {
     if (input[flag2][1] > input[flag2][0]) {
         res[flag2] = input[flag2][1];
     }
+    //判断是否有重复鞍点
     if (res[flag1] == res[flag2]) {
         if (flag1 > flag2) {
             res[flag2] = 0;
@@ -63,6 +64,7 @@ void getSaddlePoint() {
             res[flag1] = 0;
         }
     }
+    //判断一列是否有重复最大值
     if (temp1 != 0) {
         res[flag1] = 0;
     }
