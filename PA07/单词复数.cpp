@@ -10,21 +10,21 @@ char constantAlphabets[20] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 
                               'w',
                               'x', 'z'};
 
-void getRegularPlural(char *arr);
+char *getRegularPlural(char *arr);
 
 int main() {
     char arr[100];
     scanf("%s", arr);
-    getRegularPlural(arr);
+    printf("%s", getRegularPlural(arr));
 
     return 0;
 }
 
-void getRegularPlural(char *arr) {
+char *getRegularPlural(char *arr) {
     int len = strlen(arr);
     int flag = 0;
-    for (int i = 0; i < 20; i++) {  //判断y前是否有辅音字母
-        if (arr[len - 2] == constantAlphabets[i]) {
+    for (char constantAlphabet: constantAlphabets) {  //判断y前是否有辅音字母
+        if (arr[len - 2] == constantAlphabet) {
             flag = 1;
         }
     }
@@ -42,6 +42,5 @@ void getRegularPlural(char *arr) {
         arr[len] = 's';
         arr[len + 1] = '\0';
     }
-
-    printf("%s", arr);
+    return arr;
 }
