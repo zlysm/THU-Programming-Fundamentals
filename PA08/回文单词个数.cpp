@@ -32,6 +32,7 @@ int number_of_Palindrome(char *array) {
         }
     }
     sep_input[column][row] = '\0';
+
     for (int i = 0; i <= column; i++) {  //判断每个单词是否是回文数
         if (isPalindrome(sep_input[i])) {
             count++;
@@ -42,9 +43,8 @@ int number_of_Palindrome(char *array) {
 }
 
 bool isPalindrome(char *array) {
-    int len = strlen(array);
-    for (int i = 0; i < len / 2; i++) {
-        if (array[i] != array[len - i - 1]) {
+    for (int i = 0; i < strlen(array) / 2; i++) {
+        if (array[i] != array[strlen(array) - i - 1]) {
             return false;
         }
     }
