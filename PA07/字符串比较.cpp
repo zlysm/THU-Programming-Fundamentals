@@ -4,7 +4,6 @@
 //
 
 #include<cstdio>
-#include<cstring>
 
 void my_strcmp(const char *arr1, const char *arr2);
 
@@ -19,9 +18,11 @@ int main() {
 }
 
 void my_strcmp(const char *arr1, const char *arr2) {
-    int len1 = strlen(arr1);
-    int len2 = strlen(arr2);
-    if (len1 < len2) len1 = len2;
+    int len1 = (int) sizeof(arr1) / sizeof(*arr1);
+    int len2 = (int) sizeof(arr2) / sizeof(*arr2);
+    if (len1 < len2) {  //比较到小的长度
+        len1 = len2;
+    }
     int count = 0;
     for (int i = 0; i < len1; i++) {
         if (arr1[i] > arr2[i]) {
