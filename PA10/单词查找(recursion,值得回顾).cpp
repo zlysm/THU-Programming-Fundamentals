@@ -60,7 +60,7 @@ void find(char *input, int xCoord, int yCoord, int p, int n) {
         return;  //最后一位，终止
     }
     //排序"x"坐标优先，顺序应为14627358
-    if (p != 1) {  //儿子不在1，找父亲是否在8
+    if (p != 1) {  //对"祖父"而言，父亲不在1，儿子就可能在1，对儿子而言找父亲是否在8
         find(input, xCoord - 1, yCoord - 1, 8, n + 1);
     }
     if (p != 4) {
