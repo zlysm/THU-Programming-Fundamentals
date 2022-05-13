@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 5/9/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 5/9/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include <cstdio>
@@ -41,7 +41,7 @@ Rational::~Rational() {
     denominator /= flag;
 }
 
-inline int Rational::gcd(int num1, int num2) {  //æ‰¾æœ€å¤§å…¬çº¦æ•°
+inline int Rational::gcd(int num1, int num2) {  //ÕÒ×î´ó¹«Ô¼Êı
     if (num1 < num2) {
         int temp = num1;
         num1 = num2;
@@ -117,7 +117,7 @@ int main() {
             break;
     }
 
-    if (!isBigger) printf("-");  //è´Ÿæ•°åŠ è´Ÿå·
+    if (!isBigger) printf("-");  //¸ºÊı¼Ó¸ººÅ
     switch (format) {
         case 1:
             r.printRational();

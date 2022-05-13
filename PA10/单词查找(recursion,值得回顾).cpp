@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 5/2/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 5/2/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include <cstdio>
@@ -38,29 +38,29 @@ int main() {
 }
 
 void find(char *input, int xCoord, int yCoord, int p, int n) {
-    //åˆ¤æ–­è¾“å…¥æ˜¯å¦åˆæ³•
+    //ÅĞ¶ÏÊäÈëÊÇ·ñºÏ·¨
     if (xCoord < 0 || xCoord >= COLUMN) return;
     if (yCoord < 0 || yCoord >= ROW) return;
-    //å­—ç¬¦ä¸ç›¸ç­‰ç›´æ¥è¿”å›
+    //×Ö·û²»ÏàµÈÖ±½Ó·µ»Ø
     if (input[n] != WordsList[xCoord][yCoord]) return;
 
-    for (int i = 0; i < n; ++i) {  //é˜²æ­¢å¾€å›èµ°
+    for (int i = 0; i < n; ++i) {  //·ÀÖ¹Íù»Ø×ß
         if (Coord[i] == 10 * xCoord + yCoord) {
             return;
         }
     }
 
-    Coord[n] = 10 * xCoord + yCoord;  //eg:ç”¨32æ¥è¡¨ç¤º(3,2)
-    if (n == strlen(input) - 1) {  //åˆ¤æ–­é•¿åº¦æ˜¯å¦æ˜¯å­—ç¬¦ä¸²é•¿åº¦ï¼Œå³æœ‰æ²¡æœ‰åˆ¤æ–­åˆ°æœ€åä¸€ä½
+    Coord[n] = 10 * xCoord + yCoord;  //eg:ÓÃ32À´±íÊ¾(3,2)
+    if (n == strlen(input) - 1) {  //ÅĞ¶Ï³¤¶ÈÊÇ·ñÊÇ×Ö·û´®³¤¶È£¬¼´ÓĞÃ»ÓĞÅĞ¶Ïµ½×îºóÒ»Î»
         for (int i = 0; i <= n; ++i) {
             printf("(%d,%d)", Coord[i] / 10 + 1, Coord[i] % 10 + 1);
         }
         printf("\n");
-        count++;  //è®°å½•ä¸ªæ•°
-        return;  //æœ€åä¸€ä½ï¼Œç»ˆæ­¢
+        count++;  //¼ÇÂ¼¸öÊı
+        return;  //×îºóÒ»Î»£¬ÖÕÖ¹
     }
-    //æ’åº"x"åæ ‡ä¼˜å…ˆï¼Œé¡ºåºåº”ä¸º14627358
-    if (p != 1) {  //å¯¹"ç¥–çˆ¶"è€Œè¨€ï¼Œçˆ¶äº²ä¸åœ¨1ï¼Œå„¿å­å°±å¯èƒ½åœ¨1ï¼Œå¯¹å„¿å­è€Œè¨€æ‰¾çˆ¶äº²æ˜¯å¦åœ¨8
+    //ÅÅĞò"x"×ø±êÓÅÏÈ£¬Ë³ĞòÓ¦Îª14627358
+    if (p != 1) {  //¶Ô"×æ¸¸"¶øÑÔ£¬¸¸Ç×²»ÔÚ1£¬¶ù×Ó¾Í¿ÉÄÜÔÚ1£¬¶Ô¶ù×Ó¶øÑÔÕÒ¸¸Ç×ÊÇ·ñÔÚ8
         find(input, xCoord - 1, yCoord - 1, 8, n + 1);
     }
     if (p != 4) {

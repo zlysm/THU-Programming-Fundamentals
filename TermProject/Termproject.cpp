@@ -1,7 +1,7 @@
 //
 //Term Project of Programming Fundamentals.
-//Created by å¼ ç›Šé“­ 2021010552 on 4/13/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú 2021010552 on 4/13/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //Encoding with GBK.
 //
 
@@ -14,46 +14,46 @@
 
 using namespace std;
 
-char postfix[MAX_SIZE];                                     //å­˜å‚¨åç¼€è¡¨è¾¾å¼
+char postfix[MAX_SIZE];                                     //´æ´¢ºó×º±í´ïÊ½
 
-struct stack {                                              //å­˜å‚¨long longç±»å‹çš„æ ˆ
+struct stack {                                              //´æ´¢long longÀàĞÍµÄÕ»
     long long s;
 };
 
-//åŸºæœ¬åŠŸèƒ½
-int getPriority(char s);                                    //è·å–è¿ç®—ç¬¦ä¼˜å…ˆçº§
+//»ù±¾¹¦ÄÜ
+int getPriority(char s);                                    //»ñÈ¡ÔËËã·ûÓÅÏÈ¼¶
 
-bool isLegalInput(string ori_infix);                        //åˆ¤æ–­è¾“å…¥æ˜¯å¦åˆæ³•
+bool isLegalInput(string ori_infix);                        //ÅĞ¶ÏÊäÈëÊÇ·ñºÏ·¨
 
-void Infix2Postfix(string ori_infix);                       //ä¸­ç¼€è¡¨è¾¾å¼è½¬åç¼€è¡¨è¾¾å¼
+void Infix2Postfix(string ori_infix);                       //ÖĞ×º±í´ïÊ½×ªºó×º±í´ïÊ½
 
-long long int Calculate();                                  //è®¡ç®—åç¼€è¡¨è¾¾å¼
+long long int Calculate();                                  //¼ÆËãºó×º±í´ïÊ½
 
-void showName();                                            //æ˜¾ç¤ºä¿¡æ¯
+void showName();                                            //ÏÔÊ¾ĞÅÏ¢
 
-//è¿›é˜¶åŠŸèƒ½
-void MultipleTwoNum(string num1, string num2);              //æ¨¡æ‹Ÿç«–å¼è®¡ç®—ï¼Œæ¯ä½ç›¸ä¹˜æœ€åè¿›ä½
+//½ø½×¹¦ÄÜ
+void MultipleTwoNum(string num1, string num2);              //Ä£ÄâÊúÊ½¼ÆËã£¬Ã¿Î»Ïà³Ë×îºó½øÎ»
 
 int main() {
     showName();
 
     int whichFunc;
 
-    cout << "è¯·é€‰æ‹©åŠŸèƒ½ï¼ˆ1--åŸºæœ¬åŠŸèƒ½ï¼šè®¡ç®—è¡¨è¾¾å¼ï¼Œ2--è¿›é˜¶åŠŸèƒ½ï¼šä¸¤æ•°ç›¸ä¹˜ï¼‰ï¼š" << endl;
-    cin >> whichFunc;                                       //åˆ¤æ–­å“ªç§åŠŸèƒ½
+    cout << "ÇëÑ¡Ôñ¹¦ÄÜ£¨1--»ù±¾¹¦ÄÜ£º¼ÆËã±í´ïÊ½£¬2--½ø½×¹¦ÄÜ£ºÁ½ÊıÏà³Ë£©£º" << endl;
+    cin >> whichFunc;                                       //ÅĞ¶ÏÄÄÖÖ¹¦ÄÜ
     cin.ignore();
 
     switch (whichFunc) {
         case 1: {
             string ori_infix;
 
-            cout << "è¯·è¾“å…¥æ•°å­¦è¡¨è¾¾å¼ï¼š" << endl;
+            cout << "ÇëÊäÈëÊıÑ§±í´ïÊ½£º" << endl;
             getline(cin, ori_infix);
 
             if (isLegalInput(ori_infix)) {
-                Infix2Postfix(ori_infix);                   //è¡¨è¾¾å¼è½¬æ¢
+                Infix2Postfix(ori_infix);                   //±í´ïÊ½×ª»»
                 long long int res = Calculate();
-                cout << "ç»“æœä¸º:" << res << endl;
+                cout << "½á¹ûÎª:" << res << endl;
             }
             break;
         }
@@ -61,11 +61,11 @@ int main() {
             string total, num1, num2;
             bool isNum2 = false;
 
-            cout << "è¯·è¾“å…¥ä¹˜æ³•è¡¨è¾¾å¼ï¼ˆä¾‹å¦‚2 * 3ï¼‰ï¼š" << endl;
+            cout << "ÇëÊäÈë³Ë·¨±í´ïÊ½£¨ÀıÈç2 * 3£©£º" << endl;
             getline(cin, total);
 
             for (char i: total) {
-                if (i == '*' || i == ' ') {                 //åˆ¤æ–­æ˜¯å¦åˆ°ç¬¬äºŒä¸ªæ•°
+                if (i == '*' || i == ' ') {                 //ÅĞ¶ÏÊÇ·ñµ½µÚ¶ş¸öÊı
                     isNum2 = true;
                 }
                 if (!isNum2) {
@@ -79,14 +79,14 @@ int main() {
             break;
         }
         default:
-            cout << "è¯·è¾“å…¥æ­£ç¡®çš„åŠŸèƒ½ç±»å‹ï¼" << endl;
+            cout << "ÇëÊäÈëÕıÈ·µÄ¹¦ÄÜÀàĞÍ£¡" << endl;
     }
 
     system("pause");
     return 0;
 }
 
-//åŸºç¡€åŠŸèƒ½
+//»ù´¡¹¦ÄÜ
 
 int getPriority(char s) {
     switch (s) {
@@ -109,11 +109,11 @@ void Infix2Postfix(string ori_infix) {
     vector<char> op;
     int j = 0;
 
-    for (int i = 0; i < ori_infix.length(); ++i) {          //åˆ é™¤ç©ºæ ¼
+    for (int i = 0; i < ori_infix.length(); ++i) {          //É¾³ı¿Õ¸ñ
         if (ori_infix[i] == ' ') {
             ori_infix.erase(i, 1);
         }
-        if (ori_infix[i] == '-') {                          //è´Ÿæ•°å˜ä¸º0-æ­£æ•°
+        if (ori_infix[i] == '-') {                          //¸ºÊı±äÎª0-ÕıÊı
             ori_infix.insert(i, "0");
             ++i;
         }
@@ -126,7 +126,7 @@ void Infix2Postfix(string ori_infix) {
             op.push_back(i);
             postfix[j++] = ' ';
 
-            //è¿ç®—ç¬¦ä¼˜å…ˆçº§ä½ï¼Œä¸Šä¸€ä¸ªopå‡ºæ ˆ
+            //ÔËËã·ûÓÅÏÈ¼¶µÍ£¬ÉÏÒ»¸öop³öÕ»
             while (op.size() > 1 && (getPriority(op[op.size() - 1]) <= getPriority(op[op.size() - 2]))) {
                 postfix[j++] = op[op.size() - 2];
                 postfix[j++] = ' ';
@@ -135,7 +135,7 @@ void Infix2Postfix(string ori_infix) {
         }
     }
 
-    for (int i = op.size() - 1; i >= 0; --i) {              //éå†å®Œæˆæ‰€æœ‰opå‡ºæ ˆ
+    for (int i = op.size() - 1; i >= 0; --i) {              //±éÀúÍê³ÉËùÓĞop³öÕ»
         postfix[j++] = ' ';
         postfix[j++] = op[i];
     }
@@ -149,9 +149,9 @@ long long int Calculate() {
 
     for (char i: postfix) {
         if (i >= '0' && i <= '9') {
-            num = num * 10 + i - '0';                       //å­˜å‚¨æ•°å­—
+            num = num * 10 + i - '0';                       //´æ´¢Êı×Ö
         } else {
-            if (num != 0) {                                 //é‡åˆ°ç©ºæ ¼æ•°ç»„å…¥æ ˆ
+            if (num != 0) {                                 //Óöµ½¿Õ¸ñÊı×éÈëÕ»
                 stack[j++].s = num;
                 num = 0;
             }
@@ -176,40 +176,40 @@ long long int Calculate() {
 
 void showName() {
     cout << "Term Project of Programming Fundamentals.\n";
-    cout << "Created by å¼ ç›Šé“­ 2021010552.\n";
-    cout << "Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.\n";
+    cout << "Created by ÕÅÒæÃú 2021010552.\n";
+    cout << "Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.\n";
     cout << "-----------------------------------------------------------------------------\n\n";
 }
 
-//è¿›é˜¶åŠŸèƒ½
+//½ø½×¹¦ÄÜ
 void MultipleTwoNum(string num1, string num2) {
     deque<int> result(num1.length() + num2.length());
 
-    for (int i = 0; i < num1.length(); ++i) {               //æ¯ä¸ªæ•°ä½ç›¸ä¹˜
+    for (int i = 0; i < num1.length(); ++i) {               //Ã¿¸öÊıÎ»Ïà³Ë
         for (int j = 0; j < num2.length(); ++j) {
             result[i + j] += (num1[i] - '0') * (num2[j] - '0');
         }
     }
 
-    int carry = 0;                                          //å¤„ç†è¿›ä½
+    int carry = 0;                                          //´¦Àí½øÎ»
     for (int i = result.size() - 1; i >= 0; --i) {
         result[i] += carry;
         carry = result[i] / 10;
         result[i] %= 10;
     }
 
-    while (result[0] == 0 && result.size() > 1) {           //å¦‚æœæœ€é«˜ä½ä¸º0ï¼Œåˆ™å»æ‰
+    while (result[0] == 0 && result.size() > 1) {           //Èç¹û×î¸ßÎ»Îª0£¬ÔòÈ¥µô
         result.pop_front();
     }
 
-    while (carry != 0) {                                    //å¦‚æœæœ€é«˜ä½æœ‰è¿›ä½ï¼Œå°†è¿›ä½ç§»è‡³ç¬¬ä¸€ä½
+    while (carry != 0) {                                    //Èç¹û×î¸ßÎ»ÓĞ½øÎ»£¬½«½øÎ»ÒÆÖÁµÚÒ»Î»
         int temp = carry % 10;
         result.push_front(temp);
         carry /= 10;
     }
 
-    cout << "ç»“æœä¸ºï¼š" << endl;
-    for (int i = 0; i < result.size() - 1; ++i) {           //éå†è¾“å‡ºç»“æœ
+    cout << "½á¹ûÎª£º" << endl;
+    for (int i = 0; i < result.size() - 1; ++i) {           //±éÀúÊä³ö½á¹û
         cout << result[i];
     }
     cout << endl;

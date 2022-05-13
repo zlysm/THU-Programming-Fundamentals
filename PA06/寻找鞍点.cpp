@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 4/4/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 4/4/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include<cstdio>
@@ -17,13 +17,13 @@ int main() {
 
 void getSaddlePoint() {
     int input[ROW][COLUMN];
-    for (int row = 0; row < ROW; row++) {  //å­˜å‚¨æ•°æ®
+    for (int row = 0; row < ROW; row++) {  //´æ´¢Êı¾İ
         for (int column = 0; column < COLUMN; column++) {
             scanf("%d", &input[row][column]);
         }
     }
 
-    //æ‰¾ç¬¬ä¸€åˆ—çš„æœ€å¤§å€¼ä½ç½®
+    //ÕÒµÚÒ»ÁĞµÄ×î´óÖµÎ»ÖÃ
     int max = 0, temp1 = 0;
     int flag1;
     for (int j = 0; j < ROW; j++) {
@@ -36,7 +36,7 @@ void getSaddlePoint() {
         }
     }
 
-    //æ‰¾ç¬¬äºŒåˆ—çš„æœ€å¤§å€¼ä½ç½®
+    //ÕÒµÚ¶şÁĞµÄ×î´óÖµÎ»ÖÃ
     max = 0;
     int flag2, temp2 = 0;
     for (int j = 0; j < ROW; j++) {
@@ -56,7 +56,7 @@ void getSaddlePoint() {
     if (input[flag2][1] > input[flag2][0]) {
         res[flag2] = input[flag2][1];
     }
-    //åˆ¤æ–­æ˜¯å¦æœ‰é‡å¤éç‚¹
+    //ÅĞ¶ÏÊÇ·ñÓĞÖØ¸´°°µã
     if (res[flag1] == res[flag2]) {
         if (flag1 > flag2) {
             res[flag2] = 0;
@@ -64,7 +64,7 @@ void getSaddlePoint() {
             res[flag1] = 0;
         }
     }
-    //åˆ¤æ–­ä¸€åˆ—æ˜¯å¦æœ‰é‡å¤æœ€å¤§å€¼
+    //ÅĞ¶ÏÒ»ÁĞÊÇ·ñÓĞÖØ¸´×î´óÖµ
     if (temp1 != 0) {
         res[flag1] = 0;
     }

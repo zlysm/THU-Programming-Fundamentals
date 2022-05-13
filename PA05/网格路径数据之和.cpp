@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 3/28/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 3/28/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include<cstdio>
@@ -17,25 +17,25 @@ int matrix[m][n] = {{0, 9, 8, 7, 6, 5, 4, 3},
                     {3, 4, 6, 7, 8, 4, 3, 2},
                     {2, 4, 6, 8, 9, 7, 5, 3}};
 
-int getStepSum(int i1, int j1, int i2, int j2);  //è®¡ç®—æ¯ä¸¤ç‚¹ä¹‹é—´çš„å’Œ
+int getStepSum(int i1, int j1, int i2, int j2);  //¼ÆËãÃ¿Á½µãÖ®¼äµÄºÍ
 
 int main() {
-    int num_of_Coord;  //å­˜å‚¨åæ ‡ä¸ªæ•°
+    int num_of_Coord;  //´æ´¢×ø±ê¸öÊı
     scanf("%d", &num_of_Coord);
     int mCoord[num_of_Coord], nCoord[num_of_Coord];
 
-    for (int i = 0; i < num_of_Coord; i++) {  //å­˜å‚¨åæ ‡
+    for (int i = 0; i < num_of_Coord; i++) {  //´æ´¢×ø±ê
         scanf("%d %d", &mCoord[i], &nCoord[i]);
     }
 
     int sum = 0;
-    if (num_of_Coord == 1) {  //ä¸€ä¸ªç‚¹çš„æƒ…å†µ
+    if (num_of_Coord == 1) {  //Ò»¸öµãµÄÇé¿ö
         sum = matrix[mCoord[0] - 1][nCoord[0] - 1];
     }
     for (int i = 0; i < num_of_Coord - 1; i++) {
         sum += getStepSum(mCoord[i], nCoord[i], mCoord[i + 1], nCoord[i + 1]);
     }
-    for (int i = 0; i < num_of_Coord - 2; i++) {  //å‡å»é‡å¤åŠ çš„éƒ¨åˆ†
+    for (int i = 0; i < num_of_Coord - 2; i++) {  //¼õÈ¥ÖØ¸´¼ÓµÄ²¿·Ö
         sum -= matrix[mCoord[i + 1] - 1][nCoord[i + 1] - 1];
     }
 
@@ -46,7 +46,7 @@ int main() {
 
 int getStepSum(int i1, int j1, int i2, int j2) {
     int StepSum = 0;
-    if (i1 == i2) {  //måæ ‡ç›¸åŒ
+    if (i1 == i2) {  //m×ø±êÏàÍ¬
         if (j1 < j2) {
             for (int i = j1; i <= j2; i++) {
                 StepSum += matrix[i1 - 1][i - 1];
@@ -58,7 +58,7 @@ int getStepSum(int i1, int j1, int i2, int j2) {
         }
     }
 
-    if (j1 == j2) {  //nåæ ‡ç›¸åŒ
+    if (j1 == j2) {  //n×ø±êÏàÍ¬
         if (i1 < i2) {
             for (int i = i1; i <= i2; i++) {
                 StepSum += matrix[i - 1][j1 - 1];

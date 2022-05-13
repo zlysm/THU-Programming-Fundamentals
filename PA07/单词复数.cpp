@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 4/11/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 4/11/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include<cstdio>
@@ -23,7 +23,7 @@ int main() {
 char *getRegularPlural(char *arr) {
     int len = strlen(arr);
     int flag = 0;
-    for (char constantAlphabet: constantAlphabets) {  //åˆ¤æ–­yå‰æ˜¯å¦æœ‰è¾…éŸ³å­—æ¯
+    for (char constantAlphabet: constantAlphabets) {  //ÅĞ¶ÏyÇ°ÊÇ·ñÓĞ¸¨Òô×ÖÄ¸
         if (arr[len - 2] == constantAlphabet) {
             flag = 1;
         }

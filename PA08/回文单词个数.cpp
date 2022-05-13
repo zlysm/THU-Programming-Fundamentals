@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 4/18/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 4/18/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include <cstdio>
@@ -22,7 +22,7 @@ int main() {
 int number_of_Palindrome(char *array) {
     char sep_input[99][99];
     int column = 0, row = 0, count = 0;
-    for (int i = 0; i < strlen(array); i++) {  //å°†å•è¯åˆ†å¼€
+    for (int i = 0; i < strlen(array); i++) {  //½«µ¥´Ê·Ö¿ª
         if (array[i] != ' ') {
             sep_input[column][row++] = array[i];
         } else {
@@ -33,7 +33,7 @@ int number_of_Palindrome(char *array) {
     }
     sep_input[column][row] = '\0';
 
-    for (int i = 0; i <= column; i++) {  //åˆ¤æ–­æ¯ä¸ªå•è¯æ˜¯å¦æ˜¯å›æ–‡æ•°
+    for (int i = 0; i <= column; i++) {  //ÅĞ¶ÏÃ¿¸öµ¥´ÊÊÇ·ñÊÇ»ØÎÄÊı
         if (isPalindrome(sep_input[i])) {
             count++;
         }

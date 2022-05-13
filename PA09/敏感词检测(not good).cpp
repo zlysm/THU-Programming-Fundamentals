@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 4/26/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 4/26/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include <cstdio>
@@ -26,7 +26,7 @@ void FindKeyWords(char *keywords, char *ori_input) {
     char sep_input[99][99], sep_keywords[99][99];
 
     int column1 = 0, row1 = 0;
-    for (int i = 0; i < strlen(ori_input); i++) {  //å°†è¦åˆ¤æ–­çš„å•è¯åˆ†å¼€
+    for (int i = 0; i < strlen(ori_input); i++) {  //½«ÒªÅĞ¶ÏµÄµ¥´Ê·Ö¿ª
         if (ori_input[i] != ' ') {
             sep_input[column1][row1++] = ori_input[i];
         } else {
@@ -37,7 +37,7 @@ void FindKeyWords(char *keywords, char *ori_input) {
     sep_input[column1][row1] = '\0';
 
     int column2 = 0, row2 = 0;
-    for (int i = 0; i < strlen(keywords); i++) {  //å°†å…³é”®è¯åˆ†å¼€
+    for (int i = 0; i < strlen(keywords); i++) {  //½«¹Ø¼ü´Ê·Ö¿ª
         if (keywords[i] != ' ') {
             sep_keywords[column2][row2++] = keywords[i];
         } else {
@@ -47,7 +47,7 @@ void FindKeyWords(char *keywords, char *ori_input) {
     }
     sep_keywords[column2][row2] = '\0';
 
-    for (int i = 0; i < column1 + 1; i++) {  //è¾“å‡ºç»“æœ
+    for (int i = 0; i < column1 + 1; i++) {  //Êä³ö½á¹û
         for (int j = 0; j < column2 + 1; j++) {
             if (isKeyWords(sep_keywords[j], sep_input[i])) {
                 printf("%s ", sep_keywords[j]);

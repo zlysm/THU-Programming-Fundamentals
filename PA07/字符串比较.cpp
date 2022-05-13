@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 4/11/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 4/11/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include<cstdio>
@@ -20,21 +20,21 @@ int main() {
 void my_strcmp(const char *arr1, const char *arr2) {
     int len1 = (int) sizeof(arr1) / sizeof(*arr1);
     int len2 = (int) sizeof(arr2) / sizeof(*arr2);
-    if (len1 < len2) {  //æ¯”è¾ƒåˆ°å°çš„é•¿åº¦
+    if (len1 < len2) {  //±È½Ïµ½Ğ¡µÄ³¤¶È
         len1 = len2;
     }
     int count = 0;
     for (int i = 0; i < len1; i++) {
         if (arr1[i] > arr2[i]) {
-            printf("å¤§äº");
+            printf("´óÓÚ");
             break;
         } else if (arr1[i] < arr2[i]) {
-            printf("å°äº");
+            printf("Ğ¡ÓÚ");
             break;
         }
         count++;
     }
     if (count == len1) {
-        printf("ç­‰äº");
+        printf("µÈÓÚ");
     }
 }

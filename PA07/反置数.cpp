@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 4/11/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 4/11/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include<cstdio>
@@ -17,12 +17,12 @@ int main() {
 
 int getReverseNum(int num) {
     int reverse_num = 0;
-    if (num % 10 == 0) {  //å»é™¤æœ«å°¾çš„0
+    if (num % 10 == 0) {  //È¥³ıÄ©Î²µÄ0
         for (int j = 0;num % 10 != 0; j++) {
             num /= 10;
         }
     }
-    for (int i = 0; num != 0; i++) {  //æ±‚åç½®
+    for (int i = 0; num != 0; i++) {  //Çó·´ÖÃ
         reverse_num = reverse_num * 10 + num % 10;
         num /= 10;
     }

@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 5/2/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 5/2/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include <cstdio>
@@ -37,10 +37,10 @@ int main() {
 
     for (int i = 0; i < COLUMN; ++i) {
         for (int j = 0; j < ROW; ++j) {
-            if (WordsList[i][j] == input[0]) {  //ä¸ç¬¬ä¸€ä¸ªå­—æ¯ç›¸åŒï¼Œå¼€å§‹æœç´¢
-                xNum[0] = i;  //é˜²æ­¢(0,0)è¢«è·³è¿‡
+            if (WordsList[i][j] == input[0]) {  //ÓëµÚÒ»¸ö×ÖÄ¸ÏàÍ¬£¬¿ªÊ¼ËÑË÷
+                xNum[0] = i;  //·ÀÖ¹(0,0)±»Ìø¹ı
                 yNum[0] = j;
-                while (Search(input, i, j)) {  //æ‰¾å¤šç§æƒ…å†µ
+                while (Search(input, i, j)) {  //ÕÒ¶àÖÖÇé¿ö
                     xNum[0] = i;
                     yNum[0] = j;
                     for (int k = 0; k < strlen(input); ++k) {
@@ -68,13 +68,13 @@ bool Search(char *input, int xCoord, int yCoord) {
     for (int i = 1; i < strlen(input); ++i) {
         for (int j = 0; j < 8; ++j) {
             if (SearchNext(input, xCoord + dx[j], yCoord + dy[j], i)) {
-                if (i == strlen(input) - 1) {  //å°†æ­£ç¡®è·¯çº¿æœ«å°¾æ ‡è®°
+                if (i == strlen(input) - 1) {  //½«ÕıÈ·Â·ÏßÄ©Î²±ê¼Ç
                     status[xCoord + dx[j]][yCoord + dy[j]] = 1;
                 }
-                //è®°å½•åæ ‡
+                //¼ÇÂ¼×ø±ê
                 xNum[i] = xCoord + dx[j];
                 yNum[i] = yCoord + dy[j];
-                //åˆ¤æ–­ä¸‹ä¸€ä¸ª
+                //ÅĞ¶ÏÏÂÒ»¸ö
                 xCoord += dx[j];
                 yCoord += dy[j];
                 count++;
@@ -91,11 +91,11 @@ bool Search(char *input, int xCoord, int yCoord) {
 }
 
 bool SearchNext(const char *input, int xCoord, int yCoord, int number) {
-    if (xCoord < 0 || xCoord >= COLUMN || yCoord < 0 || yCoord >= ROW || number >= strlen(input)) {  //è¾“å…¥ä¸åˆæ³•
+    if (xCoord < 0 || xCoord >= COLUMN || yCoord < 0 || yCoord >= ROW || number >= strlen(input)) {  //ÊäÈë²»ºÏ·¨
         return false;
     }
 
-    for (int i = 0; i < number; ++i) {  //é˜²æ­¢å¾€å›èµ°
+    for (int i = 0; i < number; ++i) {  //·ÀÖ¹Íù»Ø×ß
         if (xCoord == xNum[i] && yCoord == yNum[i]) {
             return false;
         }

@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 4/11/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 4/11/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include<cstdio>
@@ -12,18 +12,18 @@ void Partition(const int arr[], int length_of_arr, int *odds, const int *length_
 
 int main() {
     int length_of_arr;
-    scanf("%d", &length_of_arr);  //è¾“å…¥æ•°ç»„é•¿åº¦
+    scanf("%d", &length_of_arr);  //ÊäÈëÊı×é³¤¶È
     int arr[length_of_arr];
-    for (int i = 0; i < length_of_arr; i++) {  //è¾“å…¥æ•°æ®
+    for (int i = 0; i < length_of_arr; i++) {  //ÊäÈëÊı¾İ
         scanf("%d", &arr[i]);
     }
-    //è®¡ç®—å¥‡å¶ä¸ªæ•°
+    //¼ÆËãÆæÅ¼¸öÊı
     int length_of_odds, length_of_evens;
     CountEvensAndOdds(arr, length_of_arr, &length_of_odds, &length_of_evens);
-    //æ‹†åˆ†å¥‡å¶æ•°
+    //²ğ·ÖÆæÅ¼Êı
     int odds[length_of_odds], evens[length_of_evens];
     Partition(arr, length_of_arr, odds, &length_of_odds, evens, &length_of_evens);
-    //éå†è¾“å‡º
+    //±éÀúÊä³ö
     for (int i = 0; i < length_of_odds; i++) {
         printf("%d ", odds[i]);
     }
@@ -60,7 +60,7 @@ void Partition(const int arr[], int length_of_arr, int *odds, const int *length_
         }
         i++;
     }
-    while (i < length_of_arr) {  //å¥‡æ•°æˆ–å¶æ•°å­˜å®Œå
+    while (i < length_of_arr) {  //ÆæÊı»òÅ¼Êı´æÍêºó
         if (arr[i] % 2 == 0) {
             evens[k] = arr[i];
             k++;

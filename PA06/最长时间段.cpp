@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 4/4/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 4/4/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include<cstdio>
@@ -17,18 +17,18 @@ void getMaxTimeSpan() {
     scanf("%d", &num_of_events);
     int hour[num_of_events], min[num_of_events], sec[num_of_events];
 
-    //è¾“å…¥æ—¶é—´
+    //ÊäÈëÊ±¼ä
     for (int i = 0; i < num_of_events; i++) {
         scanf("%d:%d:%d", &hour[i], &min[i], &sec[i]);
     }
 
-    //è®¡ç®—æ—¶é—´é—´éš”
+    //¼ÆËãÊ±¼ä¼ä¸ô
     int span[num_of_events - 1];
     for (int i = 0; i < num_of_events - 1; i++) {
         span[i] = (hour[i + 1] - hour[i]) * 3600 + (min[i + 1] - min[i]) * 60 + (sec[i + 1] - sec[i]);
     }
 
-    //æ¯”è¾ƒ
+    //±È½Ï
     int flag, max = 0;
     for (int i = 0; i < num_of_events - 1; i++) {
         if (span[i] > max) {

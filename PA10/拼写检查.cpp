@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 5/8/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 5/8/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include <iostream>
@@ -31,7 +31,7 @@ int main() {
 
 bool SpellChecker(const string &input, string *List, int ListNum) {
     for (int i = 0; i < ListNum; ++i) {
-        if (input == List[i]) {  //è¾“å…¥æ­£ç¡®
+        if (input == List[i]) {  //ÊäÈëÕıÈ·
             cout << input;
             return true;
         }
@@ -40,11 +40,11 @@ bool SpellChecker(const string &input, string *List, int ListNum) {
             string input_cpy = input;
             string List_cpy = List[i];
 
-            if (List[i].length() > input.length()) {  //å°‘è¾“
+            if (List[i].length() > input.length()) {  //ÉÙÊä
                 List_cpy.erase(j, 1);
-            } else if (List[i].length() < input.length()) {  //å¤šè¾“
+            } else if (List[i].length() < input.length()) {  //¶àÊä
                 input_cpy.erase(j, 1);
-            } else {  //è¾“é”™
+            } else {  //Êä´í
                 List_cpy.erase(j, 1);
                 input_cpy.erase(j, 1);
             }

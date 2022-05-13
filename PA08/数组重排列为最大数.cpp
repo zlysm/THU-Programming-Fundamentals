@@ -1,6 +1,6 @@
 //
-//Created by å¼ ç›Šé“­ on 4/18/2022.
-//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
+//Created by ÕÅÒæÃú on 4/18/2022.
+//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
 //
 
 #include<cstdio>
@@ -20,7 +20,7 @@ int main() {
 
 int getMaxReverse(int ori_num) {
     int sep_num[5], len = 0;
-    for (int i = 0; ori_num != 0; i++) {  //æŠŠæ¯ä½æ•°å­—åˆ†å¼€
+    for (int i = 0; ori_num != 0; i++) {  //°ÑÃ¿Î»Êı×Ö·Ö¿ª
         sep_num[i] = ori_num % 10;
         ori_num /= 10;
         len++;
@@ -33,7 +33,7 @@ int getMaxReverse(int ori_num) {
     return res;
 }
 
-int getMax(int *array, int len) {  //æ‰¾åˆ°æœ€å¤§çš„å¹¶å½’é›¶
+int getMax(int *array, int len) {  //ÕÒµ½×î´óµÄ²¢¹éÁã
     int flag, max = array[0];
     for (int i = 0; i < len; i++) {
         if (array[i] >= max) {

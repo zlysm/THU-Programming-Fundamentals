@@ -14,11 +14,11 @@ char is_Perfect(int num) {
 	int res, sum = 0;
 	for (int i = 1; i < num; i++) {
 		res = num % i;
-		if (res == 0) {  //è®¡ç®—æ‰€æœ‰å› å­ä¹‹å’Œ
+		if (res == 0) {  //¼ÆËãËùÓĞÒò×ÓÖ®ºÍ
 			sum += i;
 		}
 	}
-	if (sum == num) {  //åˆ¤æ–­æ˜¯å¦æ˜¯å®Œæ•°
+	if (sum == num) {  //ÅĞ¶ÏÊÇ·ñÊÇÍêÊı
 		return 'Y';
 	}
 	else {

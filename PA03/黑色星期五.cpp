@@ -9,7 +9,7 @@ int main(void) {
 	int year, week;
 	int counter = 0;
 	cin >> year;
-	week = ((year - 1998) * 365 + num_of_leap(year) + 4) % 7;  //è¯¥å¹´å‘¨ä¸€æ˜¯æ˜ŸæœŸå‡ 
+	week = ((year - 1998) * 365 + num_of_leap(year) + 4) % 7;  //¸ÃÄêÖÜÒ»ÊÇĞÇÆÚ¼¸
 	for (int i = 1; i <= 365 + is_Leap(year); i++) {
 		if (day_number(year, i) == 13 && (i - is_Leap(year) - 1 + week) % 7 == 5) {
 			counter++;
@@ -19,7 +19,7 @@ int main(void) {
 	return 0;
 }
 
-int is_Leap(int year) {  //åˆ¤æ–­æ˜¯å¦æ˜¯é—°å¹´
+int is_Leap(int year) {  //ÅĞ¶ÏÊÇ·ñÊÇÈòÄê
 	int is_Leap_res;
 	if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
 		return is_Leap_res = 1;
@@ -29,7 +29,7 @@ int is_Leap(int year) {  //åˆ¤æ–­æ˜¯å¦æ˜¯é—°å¹´
 	}
 }
 
-int num_of_leap(int year) {  //åˆ¤æ–­è¯¥å¹´åˆ°1998å¹´ä¹‹é—´é—°å¹´æ•°é‡
+int num_of_leap(int year) {  //ÅĞ¶Ï¸ÃÄêµ½1998ÄêÖ®¼äÈòÄêÊıÁ¿
 	int num_of_leap_res = 0;
 	for (year; year >= 1998; year--) {
 		if (is_Leap(year)) {
@@ -39,7 +39,7 @@ int num_of_leap(int year) {  //åˆ¤æ–­è¯¥å¹´åˆ°1998å¹´ä¹‹é—´é—°å¹´æ•°é‡
 	return num_of_leap_res;
 }
 
-int day_number(int year, int i) {  //åˆ¤æ–­è¯¥å¹´ç¬¬å‡ å¤©æ˜¯å‡ å·
+int day_number(int year, int i) {  //ÅĞ¶Ï¸ÃÄêµÚ¼¸ÌìÊÇ¼¸ºÅ
 	int day_ARRAY[12] = { 31, (is_Leap(year) == 1) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	if (i <= 31) {
 		return i;
