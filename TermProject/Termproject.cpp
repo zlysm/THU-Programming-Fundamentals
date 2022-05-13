@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <vector>
 #include <deque>
 
@@ -14,25 +15,25 @@
 
 using namespace std;
 
-char postfix[MAX_SIZE];                                     //存储后缀表达式
+char postfix[MAX_SIZE] = {0};                               //存储后缀表达式
 
-struct stack {                                              //存储long long类型的栈
+struct stack {                                                  //存储long long类型的栈
     long long s;
 };
 
 //基本功能
-int getPriority(char s);                                    //获取运算符优先级
+int getPriority(char s);                                        //获取运算符优先级
 
-bool isLegalInput(string ori_infix);                        //判断输入是否合法
+bool isLegalInput(string ori_infix);                            //判断输入是否合法
 
-void Infix2Postfix(string ori_infix);                       //中缀表达式转后缀表达式
+void Infix2Postfix(string ori_infix);                           //中缀表达式转后缀表达式
 
-long long Calculate();                                      //计算后缀表达式
+long long Calculate();                                          //计算后缀表达式
 
-void showName();                                            //显示信息
+void showName();                                                //显示信息
 
 //进阶功能
-void MultipleTwoNum(string num1, string num2);              //模拟竖式计算，每位相乘最后进位
+void MultipleTwoNum(string num1, string num2);                  //模拟竖式计算，每位相乘最后进位
 
 int main() {
     showName();
@@ -40,7 +41,7 @@ int main() {
     int whichFunc;
 
     cout << "请选择功能（1--基本功能：计算表达式，2--进阶功能：两数相乘）：" << endl;
-    cin >> whichFunc;                                       //判断哪种功能
+    cin >> whichFunc;                                           //判断哪种功能
     cin.ignore();
 
     switch (whichFunc) {
@@ -50,11 +51,11 @@ int main() {
             cout << "请输入数学表达式：" << endl;
             getline(cin, ori_infix);
 
-            if (isLegalInput(ori_infix)) {
-                Infix2Postfix(ori_infix);                   //表达式转换
-                long long res = Calculate();
-                cout << "结果为:" << res << endl;
-            }
+//            if (isLegalInput(ori_infix)) {
+            Infix2Postfix(ori_infix);                           //表达式转换
+            long long res = Calculate();
+            cout << "结果为:" << endl << res << endl;
+//            }
             break;
         }
         case 2: {
@@ -65,7 +66,7 @@ int main() {
             getline(cin, total);
 
             for (char i: total) {
-                if (i == '*' || i == ' ') {                 //判断是否到第二个数
+                if (i == '*' || i == ' ') {                     //判断是否到第二个数
                     isNum2 = true;
                 }
                 if (!isNum2) {
@@ -109,11 +110,11 @@ void Infix2Postfix(string ori_infix) {
     vector<char> op;
     int j = 0;
 
-    for (int i = 0; i < ori_infix.length(); ++i) {          //删除空格
+    for (int i = 0; i < ori_infix.length(); ++i) {              //删除空格
         if (ori_infix[i] == ' ') {
             ori_infix.erase(i, 1);
         }
-        if (ori_infix[i] == '-') {                          //负数变为0-正数
+        if (ori_infix[i] == '-' && ori_infix[i - 1] == '(') {   //负数变为0-正数
             ori_infix.insert(i, "0");
             ++i;
         }
@@ -126,6 +127,18 @@ void Infix2Postfix(string ori_infix) {
             op.push_back(i);
             postfix[j++] = ' ';
 
+            if (getPriority(op[op.size() - 1]) == 1) {        //遇到左括号跳过
+                continue;
+            }
+            if (getPriority(op[op.size() - 1]) == 4) {        //遇到右括号，将左括号之前全部出栈
+                op.pop_back();                                   //删除右括号
+                while (getPriority(op[op.size() - 1]) != 1) {
+                    postfix[j++] = op[op.size() - 1];
+                    postfix[j++] = ' ';
+                    op.pop_back();
+                }
+                op.pop_back();                                   //删除左括号
+            }
             //运算符优先级低，上一个op出栈
             while (op.size() > 1 && (getPriority(op[op.size() - 1]) <= getPriority(op[op.size() - 2]))) {
                 postfix[j++] = op[op.size() - 2];
@@ -135,7 +148,7 @@ void Infix2Postfix(string ori_infix) {
         }
     }
 
-    for (int i = op.size() - 1; i >= 0; --i) {              //遍历完成所有op出栈
+    for (int i = op.size() - 1; i >= 0; --i) {                  //遍历完成所有op出栈
         postfix[j++] = ' ';
         postfix[j++] = op[i];
     }
@@ -147,24 +160,24 @@ long long Calculate() {
     int num = 0;
     int j = 0;
 
-    for (char i: postfix) {
-        if (i >= '0' && i <= '9') {
-            num = num * 10 + i - '0';                       //存储数字
+    for (int i = 0; i < strlen(postfix); ++i) {
+        if (postfix[i] >= '0' && postfix[i] <= '9') {
+            num = num * 10 + postfix[i] - '0';                  //存储数字
         } else {
-            if (num != 0) {                                 //遇到空格数组入栈
+            if (num != 0 || postfix[i - 1] == '0') {            //防止负号前补充的0被忽略
                 stack[j++].s = num;
                 num = 0;
             }
-            if (i == '+') {
+            if (postfix[i] == '+') {
                 stack[j - 2].s += stack[j - 1].s;
                 j--;
-            } else if (i == '-') {
+            } else if (postfix[i] == '-') {
                 stack[j - 2].s -= stack[j - 1].s;
                 j--;
-            } else if (i == '*') {
+            } else if (postfix[i] == '*') {
                 stack[j - 2].s *= stack[j - 1].s;
                 j--;
-            } else if (i == '%') {
+            } else if (postfix[i] == '%') {
                 stack[j - 2].s %= stack[j - 1].s;
                 j--;
             }
@@ -185,31 +198,31 @@ void showName() {
 void MultipleTwoNum(string num1, string num2) {
     deque<int> result(num1.length() + num2.length());
 
-    for (int i = 0; i < num1.length(); ++i) {               //每个数位相乘
+    for (int i = 0; i < num1.length(); ++i) {                   //每个数位相乘
         for (int j = 0; j < num2.length(); ++j) {
             result[i + j] += (num1[i] - '0') * (num2[j] - '0');
         }
     }
 
-    int carry = 0;                                          //处理进位
+    int carry = 0;                                              //处理进位
     for (int i = result.size() - 1; i >= 0; --i) {
         result[i] += carry;
         carry = result[i] / 10;
         result[i] %= 10;
     }
 
-    while (result[0] == 0 && result.size() > 1) {           //如果最高位为0，则去掉
+    while (result[0] == 0 && result.size() > 1) {               //如果最高位为0，则去掉
         result.pop_front();
     }
 
-    while (carry != 0) {                                    //如果最高位有进位，将进位移至第一位
+    while (carry != 0) {                                        //如果最高位有进位，将进位移至第一位
         int temp = carry % 10;
         result.push_front(temp);
         carry /= 10;
     }
 
     cout << "结果为：" << endl;
-    for (int i = 0; i < result.size() - 1; ++i) {           //遍历输出结果
+    for (int i = 0; i < result.size() - 1; ++i) {               //遍历输出结果
         cout << result[i];
     }
     cout << endl;
