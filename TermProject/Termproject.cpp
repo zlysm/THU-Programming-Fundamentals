@@ -27,7 +27,7 @@ bool isLegalInput(string ori_infix);                        //判断输入是否合法
 
 void Infix2Postfix(string ori_infix);                       //中缀表达式转后缀表达式
 
-long long int Calculate();                                  //计算后缀表达式
+long long Calculate();                                      //计算后缀表达式
 
 void showName();                                            //显示信息
 
@@ -52,7 +52,7 @@ int main() {
 
             if (isLegalInput(ori_infix)) {
                 Infix2Postfix(ori_infix);                   //表达式转换
-                long long int res = Calculate();
+                long long res = Calculate();
                 cout << "结果为:" << res << endl;
             }
             break;
@@ -142,7 +142,7 @@ void Infix2Postfix(string ori_infix) {
     postfix[j] = '\0';
 }
 
-long long int Calculate() {
+long long Calculate() {
     stack stack[100] = {0};
     int num = 0;
     int j = 0;
