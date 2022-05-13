@@ -40,7 +40,9 @@ int main() {
 
     int whichFunc;
 
-    cout << "请选择功能（1--基本功能：计算表达式，2--进阶功能：两数相乘）：" << endl;
+    cout << "Please select a function:\n"
+            "1--Basic Function: calculate the expression.\n"
+            "2--Advanced Function: multiple two large numbers." << endl;
     cin >> whichFunc;                                           //判断哪种功能
     cin.ignore();
 
@@ -48,13 +50,13 @@ int main() {
         case 1: {
             string ori_infix;
 
-            cout << "请输入数学表达式：" << endl;
+            cout << "Please enter the expression:" << endl;
             getline(cin, ori_infix);
 
 //            if (isLegalInput(ori_infix)) {
             Infix2Postfix(ori_infix);                           //表达式转换
             long long res = Calculate();
-            cout << "结果为:" << endl << res << endl;
+            cout << "The result is:" << endl << res << endl;
 //            }
             break;
         }
@@ -62,7 +64,7 @@ int main() {
             string total, num1, num2;
             bool isNum2 = false;
 
-            cout << "请输入乘法表达式（例如2 * 3）：" << endl;
+            cout << "Please enter the multiplication expression(e.g. 2 * 3):" << endl;
             getline(cin, total);
 
             for (char i: total) {
@@ -80,7 +82,7 @@ int main() {
             break;
         }
         default:
-            cout << "请输入正确的功能类型！" << endl;
+            cout << "Please enter a LEGAL function type!" << endl;
     }
 
     system("pause");
@@ -221,7 +223,7 @@ void MultipleTwoNum(string num1, string num2) {
         carry /= 10;
     }
 
-    cout << "结果为：" << endl;
+    cout << "The result is:" << endl;
     for (int i = 0; i < result.size() - 1; ++i) {               //遍历输出结果
         cout << result[i];
     }
