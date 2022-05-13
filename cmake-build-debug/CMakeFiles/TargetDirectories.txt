@@ -1,2 +1,0 @@
-D:/Coding/C++/CppCourses/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Coding/C++/CppCourses/cmake-build-debug/CMakeFiles/rebuild_cache.dir
