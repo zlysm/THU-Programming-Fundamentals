@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/CMakeLists.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/PA01/摄氏度转华氏度.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/PA01/税额计算.cpp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/PA01/计算整数和.cpp" charset="GBK" />
+  </component>
+</project>
