@@ -42,7 +42,7 @@ int main() {
 
     cout << "Please select a function:\n"
             "1--Basic Function: calculate the expression.\n"
-            "2--Advanced Function: multiple two large numbers." << endl;
+            "2--Advanced Function: multiple two large numbers.\n";
     cin >> whichFunc;                                           //判断哪种功能
     cin.ignore();
 
@@ -50,21 +50,24 @@ int main() {
         case 1: {
             string ori_infix;
 
-            cout << "Please enter the expression:" << endl;
+            cout << "Basic Func Mode.\n"
+                    "Please enter the expression:\n";
             getline(cin, ori_infix);
 
-//            if (isLegalInput(ori_infix)) {
-            Infix2Postfix(ori_infix);                           //表达式转换
-            long long res = Calculate();
-            cout << "The result is:" << endl << res << endl;
-//            }
+            if (isLegalInput(ori_infix)) {
+                Infix2Postfix(ori_infix);                       //表达式转换
+                long long res = Calculate();
+                cout << "The result is:\n" << res << endl;
+            }
             break;
         }
         case 2: {
-            string total, num1, num2;
+            string total;
+            string num1, num2;
             bool isNum2 = false;
 
-            cout << "Please enter the multiplication expression(e.g. 2 * 3):" << endl;
+            cout << "Advanced Func Mode.\n"
+                    "Please enter the multiplication expression(e.g. 2 * 3):\n";
             getline(cin, total);
 
             for (char i: total) {
@@ -82,7 +85,7 @@ int main() {
             break;
         }
         default:
-            cout << "Please enter a LEGAL function type!" << endl;
+            cout << "Please enter a LEGAL function type!\n";
     }
 
     system("pause");
@@ -108,12 +111,54 @@ int getPriority(char s) {
     }
 }
 
+bool isLegalInput(string ori_infix) {
+    int leftParenNum = 0;                                       //记录括号个数
+    int rightParenNum = 0;
+
+    for (int i = 0; i < ori_infix.length(); ++i) {              //删除空格
+        if (ori_infix[i] == ' ') {
+            ori_infix.erase(i, 1);
+        }
+    }
+
+    for (int i = 0; i < ori_infix.length(); ++i) {
+        if ((int) ori_infix[i] < 0) {                           //检查括号格式
+            cout << "Please enter parentheses in English!\n";
+            return false;
+        }
+
+        if (ori_infix.length() == 1 && getPriority(ori_infix[0]) > 0) {  //只有符号
+            cout << "Operator missing operand!\n";
+            return false;
+        }
+
+        if (i >= 1 && getPriority(ori_infix[i]) >= getPriority(ori_infix[i - 1]) && getPriority(ori_infix[i - 1]) > 1) {
+            //防止(-1)以及1+(1+1)+1被判为不合法
+            cout << "Operator missing operand!\n";
+            return false;
+        }
+
+        if (ori_infix[i] == '(') {                              //检查括号数量
+            ++leftParenNum;
+        } else if (ori_infix[i] == ')') {
+            ++rightParenNum;
+        }
+    }
+
+    if (leftParenNum != rightParenNum) {
+        cout << "Parenthesis DO NOT MATCH!\n";
+        return false;
+    }
+
+    return true;
+}
+
 void Infix2Postfix(string ori_infix) {
     vector<char> op;
     int j = 0;
 
-    for (int i = 0; i < ori_infix.length(); ++i) {              //删除空格
-        if (ori_infix[i] == ' ') {
+    for (int i = 0; i < ori_infix.length(); ++i) {
+        if (ori_infix[i] == ' ') {                              //删除空格
             ori_infix.erase(i, 1);
         }
         if (ori_infix[i] == '-' && ori_infix[i - 1] == '(') {   //负数变为0-正数
@@ -139,7 +184,7 @@ void Infix2Postfix(string ori_infix) {
                     postfix[j++] = ' ';
                     op.pop_back();
                 }
-                op.pop_back();                                   //删除左括号
+                op.pop_back();                                  //删除左括号
             }
             //运算符优先级低，上一个op出栈
             while (op.size() > 1 && (getPriority(op[op.size() - 1]) <= getPriority(op[op.size() - 2]))) {
@@ -166,22 +211,24 @@ long long Calculate() {
         if (postfix[i] >= '0' && postfix[i] <= '9') {
             num = num * 10 + postfix[i] - '0';                  //存储数字
         } else {
-            if (num != 0 || postfix[i - 1] == '0') {            //防止负号前补充的0被忽略
+            if (num != 0 || (i >= 1 && postfix[i - 1] == '0')) {//防止负号前补充的0被忽略
                 stack[j++].s = num;
                 num = 0;
             }
-            if (postfix[i] == '+') {
-                stack[j - 2].s += stack[j - 1].s;
-                j--;
-            } else if (postfix[i] == '-') {
-                stack[j - 2].s -= stack[j - 1].s;
-                j--;
-            } else if (postfix[i] == '*') {
-                stack[j - 2].s *= stack[j - 1].s;
-                j--;
-            } else if (postfix[i] == '%') {
-                stack[j - 2].s %= stack[j - 1].s;
-                j--;
+            if (j >= 2) {                                       //安全性考虑
+                if (postfix[i] == '+') {
+                    stack[j - 2].s += stack[j - 1].s;
+                    --j;
+                } else if (postfix[i] == '-') {
+                    stack[j - 2].s -= stack[j - 1].s;
+                    --j;
+                } else if (postfix[i] == '*') {
+                    stack[j - 2].s *= stack[j - 1].s;
+                    --j;
+                } else if (postfix[i] == '%') {
+                    stack[j - 2].s %= stack[j - 1].s;
+                    --j;
+                }
             }
         }
     }
@@ -190,13 +237,14 @@ long long Calculate() {
 }
 
 void showName() {
-    cout << "Term Project of Programming Fundamentals.\n";
-    cout << "Created by 张益铭 2021010552.\n";
-    cout << "Copyright (C) 张益铭 2022. All Rights Reserved.\n";
-    cout << "-----------------------------------------------------------------------------\n\n";
+    cout << "Term Project of Programming Fundamentals.\n"
+            "Created by 张益铭 2021010552.\n"
+            "Copyright (C) 张益铭 2022. All Rights Reserved.\n"
+            "-----------------------------------------------------------------------------\n\n";
 }
 
 //进阶功能
+
 void MultipleTwoNum(string num1, string num2) {
     deque<int> result(num1.length() + num2.length());
 
@@ -223,7 +271,7 @@ void MultipleTwoNum(string num1, string num2) {
         carry /= 10;
     }
 
-    cout << "The result is:" << endl;
+    cout << "The result is:\n";
     for (int i = 0; i < result.size() - 1; ++i) {               //遍历输出结果
         cout << result[i];
     }
