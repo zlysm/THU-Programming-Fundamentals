@@ -21,6 +21,8 @@ struct stack {                                                  //´æ´¢long longÀ
     long long s;
 };
 
+bool isModuloZero = false;                                      //ÅĞ¶ÏÊÇ·ñ¶Ô0È¡Ä£
+
 //»ù±¾¹¦ÄÜ
 
 int getPriority(char s);                                        //»ñÈ¡ÔËËã·ûÓÅÏÈ¼¶
@@ -47,10 +49,10 @@ int main() {
     cout << "Please select a function:\n"
             "1--Basic Function: calculate the expression.\n"
             "2--Advanced Function: multiple two large numbers.\n";
-    getline(cin, whichFunc);                                           //ÅĞ¶ÏÄÄÖÖ¹¦ÄÜ
+    getline(cin, whichFunc);                              //ÅĞ¶ÏÄÄÖÖ¹¦ÄÜ
 
     if (whichFunc.length() != 1) {
-        cout << "Please enter a LEGAL function type!\n";
+        cout << "Invalid function type!\n";
     } else {
         switch (whichFunc[0]) {
             case '1': {
@@ -60,10 +62,12 @@ int main() {
                         "Please enter the expression:\n";
                 getline(cin, ori_infix);
 
-                if (isLegalInput(ori_infix)) {                      //¼ì²éÊäÈë
-                    Infix2Postfix(ori_infix);                       //±í´ïÊ½×ª»»
+                if (isLegalInput(ori_infix)) {                  //¼ì²éÊäÈë
+                    Infix2Postfix(ori_infix);                   //±í´ïÊ½×ª»»
                     long long res = Calculate();
-                    cout << "The result is:\n" << res << endl;
+                    if (!isModuloZero) {
+                        cout << "The result is:\n" << res << endl;
+                    }
                 }
                 break;
             }
@@ -76,9 +80,9 @@ int main() {
                         "Please enter the multiplication expression(e.g. 2 * 3):\n";
                 getline(cin, total);
 
-                if (isLegalMulInput(total)) {                          //¼ì²éÊäÈë
+                if (isLegalMulInput(total)) {                   //¼ì²éÊäÈë
                     for (char i: total) {
-                        if (i == '*' || i == ' ') {                     //ÅĞ¶ÏÊÇ·ñµ½µÚ¶ş¸öÊı
+                        if (i == '*' || i == ' ') {             //ÅĞ¶ÏÊÇ·ñµ½µÚ¶ş¸öÊı
                             isNum2 = true;
                         }
                         if (!isNum2) {
@@ -93,7 +97,7 @@ int main() {
                 break;
             }
             default:
-                cout << "Please enter a LEGAL function type!\n";
+                cout << "Invalid function type!\n";
         }
     }
 
@@ -137,12 +141,12 @@ bool isLegalInput(string ori_infix) {
     }
 
     for (int i = 0; i < ori_infix.length(); ++i) {
-        if (ori_infix[i] < 0) {                           //¼ì²éÊÇ·ñÊÇÓ¢ÎÄ×´Ì¬ÏÂÊäÈë
+        if (ori_infix[i] < 0) {                                 //¼ì²éÊÇ·ñÊÇÓ¢ÎÄ×´Ì¬ÏÂÊäÈë
             cout << "Please enter expressions in English!\n";
             return false;
         }
 
-        if (ori_infix[i] < '0' || ori_infix[i] > '9') {  //¼ì²éÔËËã·û
+        if (ori_infix[i] < '0' || ori_infix[i] > '9') {         //¼ì²éÔËËã·û
             switch (ori_infix[i]) {
                 case '(':
                 case ')':
@@ -152,7 +156,7 @@ bool isLegalInput(string ori_infix) {
                 case '%':
                     break;
                 default:
-                    cout << "Please enter LEGAL operator!\n";
+                    cout << "Invalid operator!\n";
                     return false;
             }
         }
@@ -213,7 +217,7 @@ void Infix2Postfix(string ori_infix) {
                 continue;
             }
             if (getPriority(op[op.size() - 1]) == 4) {        //Óöµ½ÓÒÀ¨ºÅ£¬½«×óÀ¨ºÅÖ®Ç°È«²¿³öÕ»
-                op.pop_back();                                   //É¾³ıÓÒÀ¨ºÅ
+                op.pop_back();                                  //É¾³ıÓÒÀ¨ºÅ
                 while (getPriority(op[op.size() - 1]) != 1) {
                     postfix[j++] = op[op.size() - 1];
                     postfix[j++] = ' ';
@@ -261,8 +265,13 @@ long long Calculate() {
                     stack[j - 2].s *= stack[j - 1].s;
                     --j;
                 } else if (postfix[i] == '%') {
-                    stack[j - 2].s %= stack[j - 1].s;
-                    --j;
+                    if (stack[j - 1].s != 0) {
+                        stack[j - 2].s %= stack[j - 1].s;
+                        --j;
+                    } else {
+                        cout << "modulo 0!\n";
+                        isModuloZero = true;
+                    }
                 }
             }
         }
@@ -314,27 +323,27 @@ void MultipleTwoNum(string num1, string num2) {
 }
 
 bool isLegalMulInput(string total) {
-    int mulNum = 0;  //³ËºÅ¸öÊı
+    int mulNum = 0;                                             //³ËºÅ¸öÊı
 
-    for (int i = 0; i < total.length(); ++i) {              //É¾³ı¿Õ¸ñ
+    for (int i = 0; i < total.length(); ++i) {                  //É¾³ı¿Õ¸ñ
         if (total[i] == ' ') {
             total.erase(i, 1);
             --i;
         }
     }
 
-    if (total[0] == '*') {  //ÊÇ·ñÊäÈëµÚÒ»¸ö³ËÊı
+    if (total[0] == '*') {                                      //ÊÇ·ñÊäÈëµÚÒ»¸ö³ËÊı
         cout << "Please enter the first multiplier!\n";
         return false;
     }
 
-    if (total[total.length() - 1] == '*') {  //ÊÇ·ñÊäÈëµÚ¶ş¸ö³ËÊı
+    if (total[total.length() - 1] == '*') {                     //ÊÇ·ñÊäÈëµÚ¶ş¸ö³ËÊı
         cout << "Please enter the second multiplier!\n";
         return false;
     }
 
     for (char i: total) {
-        if (i < '0' || i > '9') {  //¼ì²éÔËËã·û
+        if (i < '0' || i > '9') {                               //¼ì²éÔËËã·û
             if (i == '*') {
                 ++mulNum;
             } else {
