@@ -1,4 +1,4 @@
-#include "BasicFunc.h"
+#include "my_function.h"
 
 char postfix[MAX_SIZE] = {0};                               //´æ´¢ºó×º±í´ïÊ½
 
@@ -6,7 +6,7 @@ struct stack {                                                  //´æ´¢long longÀ
     long long s;
 };
 
-bool isModuloZero = false;
+bool isModuloZero = false;                                      //ÅÐ¶ÏÊÇ·ñ¶Ô0È¡Ä£
 
 int getPriority(char s) {
     switch (s) {

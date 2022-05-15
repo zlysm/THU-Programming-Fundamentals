@@ -1,5 +1,4 @@
-#include "BasicFunc.h"
-#include "AdvancedFunc.h"
+#include "my_function.h"
 
 //判断基本功能输入
 

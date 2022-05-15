@@ -1,4 +1,4 @@
-#include "AdvancedFunc.h"
+#include "my_function.h"
 
 void MultipleTwoNum(string num1, string num2) {
     deque<int> result(num1.length() + num2.length());
