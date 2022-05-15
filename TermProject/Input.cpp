@@ -1,7 +1,7 @@
 #include "my_function.h"
 
 void InputData() {
-    string whichFunc;                                          //åˆ¤æ–­å“ªç§åŠŸèƒ½
+    string whichFunc;                                          //ÅĞ¶ÏÄÄÖÖ¹¦ÄÜ
 
     cout << "Please select a function:\n"
             "1--Basic Function: calculate the expression.\n"
@@ -19,8 +19,8 @@ void InputData() {
                         "Please enter the expression:\n";
                 getline(cin, ori_infix);
 
-                if (isLegalInput(ori_infix)) {                  //æ£€æŸ¥è¾“å…¥
-                    Infix2Postfix(ori_infix);                   //è¡¨è¾¾å¼è½¬æ¢
+                if (isLegalInput(ori_infix)) {                  //¼ì²éÊäÈë
+                    Infix2Postfix(ori_infix);                   //±í´ïÊ½×ª»»
                     long long res = Calculate();
                     if (!isModuloZero) {
                         cout << "The result is:\n" << res << endl;
@@ -37,9 +37,9 @@ void InputData() {
                         "Please enter the multiplication expression(e.g. 2 * 3):\n";
                 getline(cin, total);
 
-                if (isLegalMulInput(total)) {                   //æ£€æŸ¥è¾“å…¥
+                if (isLegalMulInput(total)) {                   //¼ì²éÊäÈë
                     for (char i: total) {
-                        if (i == '*' || i == ' ') {             //åˆ¤æ–­æ˜¯å¦åˆ°ç¬¬äºŒä¸ªæ•°
+                        if (i == '*' || i == ' ') {             //ÅĞ¶ÏÊÇ·ñµ½µÚ¶ş¸öÊı
                             isNum2 = true;
                         }
                         if (!isNum2) {
