@@ -29,6 +29,10 @@ void Infix2Postfix(string ori_infix) {
     vector<char> op;
     int j = 0;
 
+    if (ori_infix[0] == '-') {                                  //第一位为负号
+        ori_infix.insert(0, "0");
+    }
+
     for (int i = 0; i < ori_infix.length(); ++i) {
         if (ori_infix[i] == ' ') {                              //删除空格
             ori_infix.erase(i, 1);
