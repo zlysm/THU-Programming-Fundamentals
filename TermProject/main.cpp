@@ -1,7 +1,7 @@
 //
 //Term Project of Programming Fundamentals.
-//Created by ÕÅÒæÃú 2021010552 on 4/13/2022.
-//Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.
+//Created by å¼ ç›Šé“­ 2021010552 on 4/13/2022.
+//Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.
 //Encoding with GBK.
 //
 

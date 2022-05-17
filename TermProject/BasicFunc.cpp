@@ -1,12 +1,12 @@
 #include "my_function.h"
 
-char postfix[MAX_SIZE] = {0};                               //´æ´¢ºó×º±í´ïÊ½
+char postfix[MAX_SIZE] = {0};                                   //å­˜å‚¨åç¼€è¡¨è¾¾å¼
 
-struct stack {                                                  //´æ´¢long longÀàĞÍµÄÕ»
+struct stack {                                                  //å­˜å‚¨long longç±»å‹çš„æ ˆ
     long long s;
 };
 
-bool isModuloZero = false;                                      //ÅĞ¶ÏÊÇ·ñ¶Ô0È¡Ä£
+bool isModuloZero = false;                                      //åˆ¤æ–­æ˜¯å¦å¯¹0å–æ¨¡
 
 int getPriority(char s) {
     switch (s) {
@@ -34,11 +34,11 @@ void Infix2Postfix(string ori_infix) {
     }
 
     for (int i = 0; i < ori_infix.length(); ++i) {
-        if (ori_infix[i] == ' ') {                              //É¾³ı¿Õ¸ñ
+        if (ori_infix[i] == ' ') {                              //åˆ é™¤ç©ºæ ¼
             ori_infix.erase(i, 1);
             --i;
         }
-        if (ori_infix[i] == '-' && ori_infix[i - 1] == '(') {   //¸ºÊı±äÎª0-ÕıÊı
+        if (ori_infix[i] == '-' && ori_infix[i - 1] == '(') {   //è´Ÿæ•°å˜ä¸º0-æ­£æ•°
             ori_infix.insert(i, "0");
             ++i;
         }
@@ -51,19 +51,19 @@ void Infix2Postfix(string ori_infix) {
             op.push_back(i);
             postfix[j++] = ' ';
 
-            if (getPriority(op[op.size() - 1]) == 1) {        //Óöµ½×óÀ¨ºÅÌø¹ı
+            if (getPriority(op[op.size() - 1]) == 1) {          //é‡åˆ°å·¦æ‹¬å·è·³è¿‡
                 continue;
             }
-            if (getPriority(op[op.size() - 1]) == 4) {        //Óöµ½ÓÒÀ¨ºÅ£¬½«×óÀ¨ºÅÖ®Ç°È«²¿³öÕ»
-                op.pop_back();                                  //É¾³ıÓÒÀ¨ºÅ
+            if (getPriority(op[op.size() - 1]) == 4) {          //é‡åˆ°å³æ‹¬å·ï¼Œå°†å·¦æ‹¬å·ä¹‹å‰å…¨éƒ¨å‡ºæ ˆ
+                op.pop_back();                                  //åˆ é™¤å³æ‹¬å·
                 while (getPriority(op[op.size() - 1]) != 1) {
                     postfix[j++] = op[op.size() - 1];
                     postfix[j++] = ' ';
                     op.pop_back();
                 }
-                op.pop_back();                                  //É¾³ı×óÀ¨ºÅ
+                op.pop_back();                                  //åˆ é™¤å·¦æ‹¬å·
             }
-            //ÔËËã·ûÓÅÏÈ¼¶µÍ£¬ÉÏÒ»¸öop³öÕ»
+            //è¿ç®—ç¬¦ä¼˜å…ˆçº§ä½ï¼Œä¸Šä¸€ä¸ªopå‡ºæ ˆ
             while (op.size() > 1 && (getPriority(op[op.size() - 1]) <= getPriority(op[op.size() - 2])) &&
                    op[op.size() - 2] != '(') {
                 postfix[j++] = op[op.size() - 2];
@@ -73,7 +73,7 @@ void Infix2Postfix(string ori_infix) {
         }
     }
 
-    for (int i = op.size() - 1; i >= 0; --i) {                  //±éÀúÍê³ÉËùÓĞop³öÕ»
+    for (int i = op.size() - 1; i >= 0; --i) {                  //éå†å®Œæˆæ‰€æœ‰opå‡ºæ ˆ
         postfix[j++] = ' ';
         postfix[j++] = op[i];
     }
@@ -88,13 +88,13 @@ long long Calculate() {
 
     for (int i = 0; i < strlen(postfix); ++i) {
         if (postfix[i] >= '0' && postfix[i] <= '9') {
-            num = num * 10 + postfix[i] - '0';                  //´æ´¢Êı×Ö
+            num = num * 10 + postfix[i] - '0';                  //å­˜å‚¨æ•°å­—
         } else {
-            if (num != 0 || (i >= 1 && postfix[i - 1] == '0')) {//·ÀÖ¹¸ººÅÇ°²¹³äµÄ0±»ºöÂÔ
+            if (num != 0 || (i >= 1 && postfix[i - 1] == '0')) {//é˜²æ­¢è´Ÿå·å‰è¡¥å……çš„0è¢«å¿½ç•¥
                 stack[j++].s = num;
                 num = 0;
             }
-            if (j >= 2) {                                       //°²È«ĞÔ¿¼ÂÇ
+            if (j >= 2) {                                       //å®‰å…¨æ€§è€ƒè™‘
                 if (postfix[i] == '+') {
                     stack[j - 2].s += stack[j - 1].s;
                     --j;
@@ -122,7 +122,7 @@ long long Calculate() {
 
 void showName() {
     cout << "Term Project of Programming Fundamentals.\n"
-            "Created by ÕÅÒæÃú 2021010552.\n"
-            "Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.\n"
+            "Created by å¼ ç›Šé“­ 2021010552.\n"
+            "Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.\n"
             "--------------------------------------------------------------------\n\n";
 }
