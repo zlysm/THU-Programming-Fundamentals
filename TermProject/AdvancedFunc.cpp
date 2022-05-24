@@ -3,7 +3,7 @@
 void MultipleTwoNum(string num1, string num2) {
     deque<int> result(num1.length() + num2.length());
 
-    for (int i = 0; i < num1.length(); ++i) {                   //每个数位相乘
+    for (int i = 0; i < num1.length(); ++i) {                   //每个数位相乘，模拟竖式计算
         for (int j = 0; j < num2.length(); ++j) {
             result[i + j] += (num1[i] - '0') * (num2[j] - '0');
         }
