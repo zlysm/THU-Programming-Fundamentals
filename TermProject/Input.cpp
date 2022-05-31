@@ -1,60 +1,62 @@
 #include "my_function.h"
 
 void InputData() {
-    string whichFunc;                                          //åˆ¤æ–­å“ªç§åŠŸèƒ½
+	string whichFunc;                                           //ÅĞ¶ÏÄÄÖÖ¹¦ÄÜ
 
-    cout << "Please select a function:\n"
-            "1--Basic Function: calculate the expression.\n"
-            "2--Advanced Function: multiple two large numbers.\n";
-    getline(cin, whichFunc);
+	cout << "Please select a function:\n"
+		"1--Basic Function: calculate the expression.\n"
+		"2--Advanced Function: multiple two large numbers.\n";
+	getline(cin, whichFunc);
 
-    if (whichFunc.length() != 1) {
-        cout << "Invalid function type!\n";
-    } else {
-        switch (whichFunc[0]) {
-            case '1': {
-                string ori_infix;
+	if (whichFunc.length() != 1) {
+		cout << "Invalid function type!\n";
+	}
+	else {
+		switch (whichFunc[0]) {
+		case '1': {
+			string ori_infix;
 
-                cout << "Basic Func Mode.\n"
-                        "Please enter the expression:\n";
-                getline(cin, ori_infix);
+			cout << "Basic Func Mode.\n"
+				"Please enter the expression:\n";
+			getline(cin, ori_infix);
 
-                if (isLegalInput(ori_infix)) {                  //æ£€æŸ¥è¾“å…¥
-                    Infix2Postfix(ori_infix);                   //è¡¨è¾¾å¼è½¬æ¢
-                    long long res = Calculate();
-                    if (!isModuloZero) {
-                        cout << "The result is:\n" << res << endl;
-                    }
-                }
-                break;
-            }
-            case '2': {
-                string total;
-                string num1, num2;
-                bool isNum2 = false;
+			if (isLegalInput(ori_infix)) {                      //¼ì²éÊäÈë
+				Infix2Postfix(ori_infix);                       //±í´ïÊ½×ª»»
+				long long res = Calculate();
+				if (!isModuloZero) {
+					cout << "The result is:\n" << res << endl;
+				}
+			}
+			break;
+		}
+		case '2': {
+			string total;
+			string num1, num2;
+			bool isNum2 = false;
 
-                cout << "Advanced Func Mode.\n"
-                        "Please enter the multiplication expression(e.g. 2 * 3):\n";
-                getline(cin, total);
+			cout << "Advanced Func Mode.\n"
+				"Please enter the multiplication expression(e.g. 2 * 3):\n";
+			getline(cin, total);
 
-                if (isLegalMulInput(total)) {                   //æ£€æŸ¥è¾“å…¥
-                    for (char i: total) {
-                        if (i == '*' || i == ' ') {             //åˆ¤æ–­æ˜¯å¦åˆ°ç¬¬äºŒä¸ªæ•°
-                            isNum2 = true;
-                        }
-                        if (!isNum2) {
-                            num1.push_back(i);
-                        } else if (i != '*' && i != ' ') {
-                            num2.push_back(i);
-                        }
-                    }
+			if (isLegalMulInput(total)) {                       //¼ì²éÊäÈë
+				for (char i : total) {
+					if (i == '*' || i == ' ') {                 //ÅĞ¶ÏÊÇ·ñµ½µÚ¶ş¸öÊı
+						isNum2 = true;
+					}
+					if (!isNum2) {
+						num1.push_back(i);
+					}
+					else if (i != '*' && i != ' ') {
+						num2.push_back(i);
+					}
+				}
 
-                    MultipleTwoNum(num1, num2);
-                }
-                break;
-            }
-            default:
-                cout << "Invalid function type!\n";
-        }
-    }
+				MultipleTwoNum(num1, num2);
+			}
+			break;
+		}
+		default:
+			cout << "Invalid function type!\n";
+		}
+	}
 }

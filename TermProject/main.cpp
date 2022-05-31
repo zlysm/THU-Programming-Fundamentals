@@ -8,10 +8,10 @@
 #include "my_function.h"
 
 int main() {
-    showName();
+	showName();
 
-    InputData();
+	InputData();
 
-    system("pause");
-    return 0;
+	system("pause");
+	return 0;
 }

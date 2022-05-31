@@ -17,7 +17,7 @@ void InputData();
 
 //基本功能
 
-extern bool isModuloZero;                                       //判断是否对0取模
+extern bool isModuloZero;                                       //判断是否对0取余
 
 int getPriority(char s);                                        //获取运算符优先级
 
