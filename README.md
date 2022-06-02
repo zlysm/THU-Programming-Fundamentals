@@ -1,2 +1,2 @@
-# CppCourses
-For course learning
+# THU-Programming-Fundamentals #
+Recording learning process.
