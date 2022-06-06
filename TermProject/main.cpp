@@ -10,7 +10,7 @@
 int main() {
 	showName();
 
-	InputData();
+	Input();
 
 	system("pause");
 	return 0;

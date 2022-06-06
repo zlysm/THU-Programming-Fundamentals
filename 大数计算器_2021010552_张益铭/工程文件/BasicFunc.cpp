@@ -1,12 +1,6 @@
 #include "my_function.h"
 
-char postfix[MAX_SIZE] = { 0 };                                 //存储后缀表达式
-
-struct Stack {                                                  //存储long long类型
-	long long s;
-};
-
-bool isModuloZero = false;                                      //判断是否对0取模
+bool isModuloZero = false;                                          //判断是否对0取模
 
 int getPriority(char s) {
 	switch (s) {
@@ -25,20 +19,31 @@ int getPriority(char s) {
 	}
 }
 
-void Infix2Postfix(string ori_infix) {
+char* Infix2Postfix(string ori_infix) {
 	vector<char> op;
+	char* postfix = new char[MAX_SIZE];
 	int j = 0;
 
-	if (ori_infix[0] == '-') {                                  //第一位为负号
+	for (int i = 0; i < ori_infix.length(); ++i) {
+		if (ori_infix[i] == ' ') {                                  //删除空格
+			ori_infix.erase(i, 1);
+			--i;
+		}
+	}
+
+	if (ori_infix[0] == '-') {                                      //第一位为负号
+		ori_infix.insert(0, "0");
+	}
+	if (ori_infix[0] == '+') {                                      //第一位为正号
 		ori_infix.insert(0, "0");
 	}
 
 	for (int i = 0; i < ori_infix.length(); ++i) {
-		if (ori_infix[i] == ' ') {                              //删除空格
-			ori_infix.erase(i, 1);
-			--i;
+		if (ori_infix[i] == '-' && ori_infix[i - 1] == '(') {       //负数变为0-正数
+			ori_infix.insert(i, "0");
+			++i;
 		}
-		if (ori_infix[i] == '-' && ori_infix[i - 1] == '(') {   //负数变为0-正数
+		if (ori_infix[i] == '+' && ori_infix[i - 1] == '(') {       //正数变为0+正数
 			ori_infix.insert(i, "0");
 			++i;
 		}
@@ -52,21 +57,21 @@ void Infix2Postfix(string ori_infix) {
 			op.push_back(i);
 			postfix[j++] = ' ';
 
-			if (getPriority(op[op.size() - 1]) == 1) {          //遇到左括号跳过
+			if (op[op.size() - 1] == '(') {                         //遇到左括号跳过
 				continue;
 			}
-			if (getPriority(op[op.size() - 1]) == 4) {          //遇到右括号，将左括号之前全部出栈
-				op.pop_back();                                  //删除右括号
-				while (getPriority(op[op.size() - 1]) != 1) {
+			if (op[op.size() - 1] == ')') {                         //遇到右括号，将左括号之前全部出栈
+				op.pop_back();                                      //删除右括号
+				while (op[op.size() - 1] != '(') {
 					postfix[j++] = op[op.size() - 1];
 					postfix[j++] = ' ';
 					op.pop_back();
 				}
-				op.pop_back();                                  //删除左括号
+				op.pop_back();                                      //删除左括号
 			}
 			//运算符优先级低，上一个op出栈
 			while (op.size() > 1 && (getPriority(op[op.size() - 1]) <= getPriority(op[op.size() - 2])) &&
-				op[op.size() - 2] != '(') {
+				op[op.size() - 1] != '(' && op[op.size() - 2] != '(') {
 				postfix[j++] = op[op.size() - 2];
 				postfix[j++] = ' ';
 				op.erase(op.end() - 2);
@@ -74,29 +79,36 @@ void Infix2Postfix(string ori_infix) {
 		}
 	}
 
-	for (unsigned i = op.size(); i >= 1; --i) {                 //遍历完成所有op出栈
+	while (!op.empty()) {                                           //遍历完成所有op出栈
+		postfix[j++] = op[op.size() - 1];
 		postfix[j++] = ' ';
-		postfix[j++] = op[i - 1];
+		op.pop_back();
 	}
 	postfix[j] = '\0';
+
+	return postfix;
 }
 
-long long Calculate() {
-	vector<Stack> stack(MAX_SIZE);
+long long Calculate(char* postfix) {
+	LongLongNum* stack = new LongLongNum[MAX_SIZE];
 	int num = 0;
 	int j = 0;
 	isModuloZero = false;
 
+	for (int i = 0; i < MAX_SIZE; ++i) {                            //初始化
+		stack[i].s = 0;
+	}
+
 	for (int i = 0; i < strlen(postfix); ++i) {
 		if (postfix[i] >= '0' && postfix[i] <= '9') {
-			num = num * 10 + postfix[i] - '0';                  //存储数字
+			num = num * 10 + postfix[i] - '0';                      //存储数字
 		}
 		else {
-			if (num != 0 || (i >= 1 && postfix[i - 1] == '0')) {//防止负号前补充的0被忽略
+			if (num != 0 || (i >= 1 && postfix[i - 1] == '0')) {    //防止负号前补充的0被忽略
 				stack[j++].s = num;
 				num = 0;
 			}
-			if (j >= 2) {                                       //安全性考虑
+			if (j >= 2) {                                           //安全性考虑
 				if (postfix[i] == '+') {
 					stack[j - 2].s += stack[j - 1].s;
 					--j;
@@ -123,7 +135,7 @@ long long Calculate() {
 		}
 	}
 
-	if (num != 0) {                                             //只有一个数字
+	if (num != 0) {                                                 //只有一个数字
 		stack[j].s = num;
 	}
 

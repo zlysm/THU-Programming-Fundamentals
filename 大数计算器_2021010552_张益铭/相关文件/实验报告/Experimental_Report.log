@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.4)  2 JUN 2022 19:56
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.4)  6 JUN 2022 16:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -690,16 +690,17 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
  [4]
 File: showname.png Graphic file (type bmp)
 <showname.png>
- [5] [6]
+ [5] [6] [7]
 File: infix2postfix.jpg Graphic file (type bmp)
 <infix2postfix.jpg>
- [7] [8] [9] [10] [11]
+ [8] [9] [10] [11] [12]
 File: begin.png Graphic file (type bmp)
 <begin.png>
 File: func1.png Graphic file (type bmp)
 <func1.png>
 File: func2.png Graphic file (type bmp)
 <func2.png>
+ [13]
 File: res11.png Graphic file (type bmp)
 <res11.png>
 File: res12.png Graphic file (type bmp)
@@ -708,24 +709,24 @@ File: res13.png Graphic file (type bmp)
 <res13.png>
 File: res14.png Graphic file (type bmp)
 <res14.png>
- [12] [13]
+ [14] [15]
 File: res21.png Graphic file (type bmp)
 <res21.png>
 File: res22.png Graphic file (type bmp)
 <res22.png>
 File: res23.png Graphic file (type bmp)
 <res23.png>
- [14] (./Experimental_Report.aux)
+ [16] (./Experimental_Report.aux)
 Package rerunfilecheck Info: File `Experimental_Report.out' has not changed.
-(rerunfilecheck)             Checksum: 15DE6A2BFF67E09F649A458513ED29F9;2873.
+(rerunfilecheck)             Checksum: A097C7AE0897CF32FC8A65DD4B2BD1B4;2749.
  ) 
 Here is how much of TeX's memory you used:
- 19580 strings out of 476180
- 410287 string characters out of 5813083
- 1036514 words of memory out of 5000000
- 40024 multiletter control sequences out of 15000+600000
+ 19575 strings out of 476180
+ 410143 string characters out of 5813083
+ 1082513 words of memory out of 5000000
+ 40020 multiletter control sequences out of 15000+600000
  477832 words of font info for 90 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 89i,9n,97p,375b,1884s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 89i,10n,97p,375b,1787s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Experimental_Report.pdf (14 pages).
+Output written on Experimental_Report.pdf (16 pages).
