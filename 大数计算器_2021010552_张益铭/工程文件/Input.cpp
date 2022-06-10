@@ -69,6 +69,8 @@ void Input() {
 				int num1_len = Str2Int(num1, num1_arr);             //获取倒序后最高位数字位置
 				int num2_len = Str2Int(num2, num2_arr);
 
+				cout << "The result is:" << endl;
+
 				MultipleTwoNum(num1_arr, num2_arr, num1_len, num2_len);
 
 				delete[]num1_arr;

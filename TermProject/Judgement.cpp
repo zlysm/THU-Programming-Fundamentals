@@ -5,6 +5,7 @@
 bool isLegalInput(string ori_infix) {
 	int leftParenNum = 0;                                           //记录括号个数
 	int rightParenNum = 0;
+	int integer_len = 0;                                            //记录数据长度
 
 	for (int i = 0; i < ori_infix.length(); ++i) {                  //删除空格
 		if (ori_infix[i] == ' ') {
@@ -18,13 +19,18 @@ bool isLegalInput(string ori_infix) {
 		return false;
 	}
 
-	if (getPriority(ori_infix[0]) > 0 && ori_infix.length() == 1) {  //第一位只有一个符号
+	if (getPriority(ori_infix[0]) > 0 && ori_infix.length() == 1) { //第一位只有一个符号
 		cout << "Operator missing operand!\n";
 		return false;
 	}
 
 	if (ori_infix[0] == '*' || ori_infix[0] == '%') {               //第一位是符号但不是减号
 		cout << "Operator missing operand!\n";
+		return false;
+	}
+
+	if (getPriority(ori_infix.back()) == 2 || getPriority(ori_infix.back()) == 3) {
+		cout << "Operator missing operand!\n";                      //最后一位是运算符
 		return false;
 	}
 
@@ -70,12 +76,16 @@ bool isLegalInput(string ori_infix) {
 			}
 		}
 
-		if (ori_infix[i] == '(') {                                  //检查括号数量
-			++leftParenNum;
+		if (ori_infix[i] >= '0' && ori_infix[i] <= '9') integer_len++;
+		else integer_len = 0;
+
+		if (integer_len > 10) {                                     //判断数字长度
+			cout << "Number out of range!\n";
+			return false;
 		}
-		else if (ori_infix[i] == ')') {
-			++rightParenNum;
-		}
+
+		if (ori_infix[i] == '(') ++leftParenNum;                    //记录括号数量
+		else if (ori_infix[i] == ')') ++rightParenNum;
 	}
 
 	if (leftParenNum != rightParenNum) {

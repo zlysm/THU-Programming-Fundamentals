@@ -111,21 +111,21 @@ Input.cpp里的Input()函数（第3行）会对输入数据进行处理。用户
 
 判断输入合法性主要由Judgement.cpp实现。
 
-Judgement.cpp中包含两个bool类型函数：isLegalInput()函数（第5行）和isLegalMulInput()函数（第91行），分别判断基本功能和进阶功能的表达式合法性。
+Judgement.cpp中包含两个bool类型函数：isLegalInput()函数（第5行）和isLegalMulInput()函数（第101行），分别判断基本功能和进阶功能的表达式合法性。
 若表达式合法，将会返回true并进行计算，否则会给出具体出错提示，并返回false。
 
 \subsubsection{基本功能}
 
 基本功能主要由BasicFunc.cpp实现。
 
-包括getPriority()（第5行）、Infix2Postfix()（第22行）、Calculate()（第92行）、showName()（第145行）等函数，分别实现获取运算符优先级、
+包括getPriority()（第5行）、Infix2Postfix()（第22行）、Calculate()（第92行）、showName()（第143行）等函数，分别实现获取运算符优先级、
 将输入的中缀表达式转化为后缀表达式、计算后缀表达式以及显示本人信息的功能。
 
 \subsubsection{进阶功能}
 
 进阶功能主要由AdvancedFunc.cpp实现。
 
-包含Str2Int()（第3行）、MultipleTwoNum()（第59行）、getLen()（第131行）等函数，分别实现将字符串转化为分割后的数组，返回首位位置、计算两数相乘、
+包含Str2Int()（第3行）、MultipleTwoNum()（第59行）、getLen()（第127行）等函数，分别实现将字符串转化为分割后的数组，返回首位位置、计算两数相乘、
 获取每组数字长度的功能。
 
 \section{设计及实现思路}
@@ -212,6 +212,8 @@ case '2'项对应进阶功能。
  int num1_len = Str2Int(num1, num1_arr); 
  int num2_len = Str2Int(num2, num2_arr);
 
+ cout << "The result is:" << endl;
+
  MultipleTwoNum(num1_arr, num2_arr, num1_len, num2_len);
 
  delete[]num1_arr;
@@ -262,7 +264,7 @@ case '2'项对应进阶功能。
 
 由Calculate()完成。由于计算的结果在long long范围，int数组并不能满足，故我利用LongLongNum结构体存放stack变量：
 
-\verb|LongLongNum* stack = new LongLongNum[MAX_SIZE];|。
+\verb|LongLongNum* stack = new LongLongNum[MAX_SIZE];|
 
 思路是遇到数则压入栈中，遇到运算符则计算栈顶的前两个数字，栈顶元素出栈。
 为防止对0取余，我定义了一个全局bool变量isModuloZero，检测到\%时判断栈顶元素是否为0，如果为0则将isModuloZero赋值为true，并输出“Modulo 0!”，
@@ -380,6 +382,8 @@ case '2'项对应进阶功能。
         \multicolumn{1}{|c|}{5} & \multicolumn{1}{c|}{缺少/多余/错误运算符} & \textbackslash{}  \\ \hline
         \multicolumn{1}{|c|}{6} & \multicolumn{1}{c|}{多/少括号}            & \textbackslash{}  \\ \hline
         \multicolumn{1}{|c|}{7} & \multicolumn{1}{c|}{对0取余}              & \textbackslash{}  \\ \hline
+        \multicolumn{1}{|c|}{8} & \multicolumn{1}{c|}{最后一位为运算符}     & \textbackslash{}  \\ \hline
+        \multicolumn{1}{|c|}{9} & \multicolumn{1}{c|}{输入数字超过int范围}  & \textbackslash{}  \\ \hline
     \end{tabular}
 \end{table}
 
@@ -418,6 +422,8 @@ if (ori_infix[i] < '0' || ori_infix[i] > '9') {
           运算符连接右括号（不包括连续多个右括号）等问题，发现任意一种都会输出“Operator missing operand!”
     \item 多/少括号的判断则比较简单，只需统计左右两种括号的个数，二者不相等就会输出“Parenthesis DO NOT match!”
     \item 关于判断是否对0取余，已经在Calculate()中进行了介绍，不再赘述。
+    \item 只需检测最后一位字符的优先级，如果是2或3（即+，-，*，\%中的一种），则会提示“Operator missing operand!”
+    \item 关于数字是否在int内，我判断的比较笼统，因为本程序实际上可计算long long范围内的运算，故我只检测了位数是否超过10，超过10就会提示“Number out of range!”
 \end{enumerate}
 
 \subsubsection{进阶功能输入异常}
@@ -489,7 +495,7 @@ if (ori_infix[i] < '0' || ori_infix[i] > '9') {
 
 \subsection{功能2：进阶功能}
 
-进阶功能用户可计算两个大数的乘法，其中数字的位数应该在int范围内（远远满足作业100000位的要求），且两个数应均为非负数，
+进阶功能用户可计算两个非负大数的乘法，位数限制见readme.txt。
 输入完成按下enter后，会显示“The result is:”并输出结果，部分输入结果如图。
 
 \begin{figure}[H]

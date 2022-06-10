@@ -91,13 +91,11 @@ char* Infix2Postfix(string ori_infix) {
 
 long long Calculate(char* postfix) {
 	LongLongNum* stack = new LongLongNum[MAX_SIZE];
-	int num = 0;
+	long long num = 0;
 	int j = 0;
 	isModuloZero = false;
 
-	for (int i = 0; i < MAX_SIZE; ++i) {                            //初始化
-		stack[i].s = 0;
-	}
+	for (int i = 0; i < MAX_SIZE; ++i) stack[i].s = 0;              //初始化
 
 	for (int i = 0; i < strlen(postfix); ++i) {
 		if (postfix[i] >= '0' && postfix[i] <= '9') {

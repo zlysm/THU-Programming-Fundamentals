@@ -1,11 +1,7 @@
-﻿  AdvancedFunc.cpp
-D:\OneDrive - mails.tsinghua.edu.cn\Study\计算机程序设计基础\大数计算器_2021010552_张益铭\工程文件\AdvancedFunc.cpp(4,26): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-  BasicFunc.cpp
-  Input.cpp
-  Judgement.cpp
-  main.cpp
+﻿  Judgement.cpp
   正在生成代码
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 176 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  1 of 177 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
-  TermProject.vcxproj -> D:\OneDrive - mails.tsinghua.edu.cn\Study\计算机程序设计基础\大数计算器_2021010552_张益铭\工程文件\x64\Release\TermProject.exe
+  TermProject.vcxproj -> D:\OneDrive - mails.tsinghua.edu.cn\Study\计算机程序设计基础\程设大作业\TermProject\x64\Release\TermProject.exe

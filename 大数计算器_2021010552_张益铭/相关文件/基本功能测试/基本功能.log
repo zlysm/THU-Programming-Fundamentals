@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.4)  2 JUN 2022 23:22
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.3.4)  10 JUN 2022 14:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -567,17 +567,22 @@ File: t9.png Graphic file (type bmp)
 <t9.png>
 File: t11.png Graphic file (type bmp)
 <t11.png>
- [6] [7] (./基本功能.aux)
+ [6]
+File: t12.png Graphic file (type bmp)
+<t12.png>
+File: t13.png Graphic file (type bmp)
+<t13.png>
+ [7] [8] (./基本功能.aux)
 Package rerunfilecheck Info: File `基本功能.out' has not changed.
 (rerunfilecheck)             Checksum: 729426F3514AB0F29819F093B43A9419;344.
  ) 
 Here is how much of TeX's memory you used:
- 16117 strings out of 476180
- 353424 string characters out of 5813083
+ 16133 strings out of 476180
+ 353606 string characters out of 5813083
  667691 words of memory out of 5000000
- 36646 multiletter control sequences out of 15000+600000
+ 36660 multiletter control sequences out of 15000+600000
  475129 words of font info for 70 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  89i,6n,97p,360b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 基本功能.pdf (7 pages).
+Output written on 基本功能.pdf (8 pages).

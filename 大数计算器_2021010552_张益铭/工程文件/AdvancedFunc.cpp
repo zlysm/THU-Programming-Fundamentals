@@ -81,12 +81,8 @@ void MultipleTwoNum(LongLongNum* num1, LongLongNum* num2, int num1_len, int num2
 		}
 	}
 
-	if (res[carry].s != 0) {                                        //获取结果的起始位置
-		num3_begin = carry;
-	}
-	else {
-		num3_begin = carry - 1;
-	}
+	if (res[carry].s != 0) num3_begin = carry;                      //获取结果的起始位置
+	else num3_begin = carry - 1;
 
 	cout << res[num3_begin].s;
 	for (int i = num3_begin - 1; i >= 0; --i) {                     //处理中间项，补0
@@ -130,9 +126,11 @@ void MultipleTwoNum(LongLongNum* num1, LongLongNum* num2, int num1_len, int num2
 
 int getLen(long long num) {                                         //获取每组数的位数
 	int len = 0;
+
 	while (num > 0) {
 		num /= 10;
 		++len;
 	}
+
 	return len;
 }
