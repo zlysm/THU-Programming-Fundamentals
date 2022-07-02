@@ -1,2 +1,2 @@
 # THU-Programming-Fundamentals #
-Recording learning process.
+2022 Spring
