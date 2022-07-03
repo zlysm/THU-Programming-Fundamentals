@@ -1,6 +1,6 @@
 #include "my_function.h"
 
-bool isModuloZero = false;                                          //ÅĞ¶ÏÊÇ·ñ¶Ô0È¡Ä£
+bool isModuloZero = false;                                          //åˆ¤æ–­æ˜¯å¦å¯¹0å–æ¨¡
 
 int getPriority(char s) {
     switch (s) {
@@ -25,25 +25,25 @@ char *Infix2Postfix(string ori_infix) {
     int j = 0;
 
     for (int i = 0; i < ori_infix.length(); ++i) {
-        if (ori_infix[i] == ' ') {                                  //É¾³ı¿Õ¸ñ
+        if (ori_infix[i] == ' ') {                                  //åˆ é™¤ç©ºæ ¼
             ori_infix.erase(i, 1);
             --i;
         }
     }
 
-    if (ori_infix[0] == '-') {                                      //µÚÒ»Î»Îª¸ººÅ
+    if (ori_infix[0] == '-') {                                      //ç¬¬ä¸€ä½ä¸ºè´Ÿå·
         ori_infix.insert(0, "0");
     }
-    if (ori_infix[0] == '+') {                                      //µÚÒ»Î»ÎªÕıºÅ
+    if (ori_infix[0] == '+') {                                      //ç¬¬ä¸€ä½ä¸ºæ­£å·
         ori_infix.insert(0, "0");
     }
 
     for (int i = 0; i < ori_infix.length(); ++i) {
-        if (ori_infix[i] == '-' && ori_infix[i - 1] == '(') {       //¸ºÊı±äÎª0-ÕıÊı
+        if (ori_infix[i] == '-' && ori_infix[i - 1] == '(') {       //è´Ÿæ•°å˜ä¸º0-æ­£æ•°
             ori_infix.insert(i, "0");
             ++i;
         }
-        if (ori_infix[i] == '+' && ori_infix[i - 1] == '(') {       //ÕıÊı±äÎª0+ÕıÊı
+        if (ori_infix[i] == '+' && ori_infix[i - 1] == '(') {       //æ­£æ•°å˜ä¸º0+æ­£æ•°
             ori_infix.insert(i, "0");
             ++i;
         }
@@ -56,19 +56,19 @@ char *Infix2Postfix(string ori_infix) {
             op.push_back(i);
             postfix[j++] = ' ';
 
-            if (op[op.size() - 1] == '(') {                         //Óöµ½×óÀ¨ºÅÌø¹ı
+            if (op[op.size() - 1] == '(') {                         //é‡åˆ°å·¦æ‹¬å·è·³è¿‡
                 continue;
             }
-            if (op[op.size() - 1] == ')') {                         //Óöµ½ÓÒÀ¨ºÅ£¬½«×óÀ¨ºÅÖ®Ç°È«²¿³öÕ»
-                op.pop_back();                                      //É¾³ıÓÒÀ¨ºÅ
+            if (op[op.size() - 1] == ')') {                         //é‡åˆ°å³æ‹¬å·ï¼Œå°†å·¦æ‹¬å·ä¹‹å‰å…¨éƒ¨å‡ºæ ˆ
+                op.pop_back();                                      //åˆ é™¤å³æ‹¬å·
                 while (op[op.size() - 1] != '(') {
                     postfix[j++] = op[op.size() - 1];
                     postfix[j++] = ' ';
                     op.pop_back();
                 }
-                op.pop_back();                                      //É¾³ı×óÀ¨ºÅ
+                op.pop_back();                                      //åˆ é™¤å·¦æ‹¬å·
             }
-            //ÔËËã·ûÓÅÏÈ¼¶µÍ£¬ÉÏÒ»¸öop³öÕ»
+            //è¿ç®—ç¬¦ä¼˜å…ˆçº§ä½ï¼Œä¸Šä¸€ä¸ªopå‡ºæ ˆ
             while (op.size() > 1 && (getPriority(op[op.size() - 1]) <= getPriority(op[op.size() - 2])) &&
                    op[op.size() - 1] != '(' && op[op.size() - 2] != '(') {
                 postfix[j++] = op[op.size() - 2];
@@ -78,7 +78,7 @@ char *Infix2Postfix(string ori_infix) {
         }
     }
 
-    while (!op.empty()) {                                           //±éÀúÍê³ÉËùÓĞop³öÕ»
+    while (!op.empty()) {                                           //éå†å®Œæˆæ‰€æœ‰opå‡ºæ ˆ
         postfix[j++] = op[op.size() - 1];
         postfix[j++] = ' ';
         op.pop_back();
@@ -94,17 +94,17 @@ long long Calculate(char *postfix) {
     int j = 0;
     isModuloZero = false;
 
-    for (int i = 0; i < MAX_SIZE; ++i) stack[i].s = 0;              //³õÊ¼»¯
+    for (int i = 0; i < MAX_SIZE; ++i) stack[i].s = 0;              //åˆå§‹åŒ–
 
     for (int i = 0; i < strlen(postfix); ++i) {
         if (postfix[i] >= '0' && postfix[i] <= '9') {
-            num = num * 10 + postfix[i] - '0';                      //´æ´¢Êı×Ö
+            num = num * 10 + postfix[i] - '0';                      //å­˜å‚¨æ•°å­—
         } else {
-            if (num != 0 || (i >= 1 && postfix[i - 1] == '0')) {    //·ÀÖ¹¸ººÅÇ°²¹³äµÄ0±»ºöÂÔ
+            if (num != 0 || (i >= 1 && postfix[i - 1] == '0')) {    //é˜²æ­¢è´Ÿå·å‰è¡¥å……çš„0è¢«å¿½ç•¥
                 stack[j++].s = num;
                 num = 0;
             }
-            if (j >= 2) {                                           //°²È«ĞÔ¿¼ÂÇ
+            if (j >= 2) {                                           //å®‰å…¨æ€§è€ƒè™‘
                 if (postfix[i] == '+') {
                     stack[j - 2].s += stack[j - 1].s;
                     --j;
@@ -127,7 +127,7 @@ long long Calculate(char *postfix) {
         }
     }
 
-    if (num != 0) {                                                 //Ö»ÓĞÒ»¸öÊı×Ö
+    if (num != 0) {                                                 //åªæœ‰ä¸€ä¸ªæ•°å­—
         stack[j].s = num;
     }
 
@@ -136,7 +136,7 @@ long long Calculate(char *postfix) {
 
 void showName() {
     cout << "Term Project of Programming Fundamentals.\n"
-            "Created by ÕÅÒæÃú 2021010552.\n"
-            "Copyright (C) ÕÅÒæÃú 2022. All Rights Reserved.\n"
+            "Created by å¼ ç›Šé“­ 2021010552.\n"
+            "Copyright (C) å¼ ç›Šé“­ 2022. All Rights Reserved.\n"
             "--------------------------------------------------------------------\n\n";
 }
