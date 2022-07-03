@@ -4,7 +4,7 @@ int Str2Int(string num, LongLongNum *arr) {
     int i = num.length() - 1;
     int j = 0;
 
-    while (i > 7) {                                                 //¾ÅÎ»Ò»×é£¬µ¹Ğò´æÈëarr
+    while (i > 7) {                                                 //ä¹ä½ä¸€ç»„ï¼Œå€’åºå­˜å…¥arr
         if (i >= 8) {
             arr[j++].s = (num[i - 8] - '0') * 100000000 + (num[i - 7] - '0') * 10000000 + (num[i - 6] - '0') * 1000000 +
                          (num[i - 5] - '0') * 100000 + (num[i - 4] - '0') * 10000 + (num[i - 3] - '0') * 1000 +
@@ -13,7 +13,7 @@ int Str2Int(string num, LongLongNum *arr) {
         i -= 9;
     }
 
-    switch (i) {                                                    //´¦Àí²»×ã¾ÅÎ»µÄÇé¿ö
+    switch (i) {                                                    //å¤„ç†ä¸è¶³ä¹ä½
         case 0:
             arr[j++].s = (num[i] - '0');
             break;
@@ -49,7 +49,7 @@ int Str2Int(string num, LongLongNum *arr) {
             break;
     }
 
-    while (j > 0 && arr[j - 1].s == 0) {                            //È¥³ıÊ×Î»µÄ0
+    while (j > 0 && arr[j - 1].s == 0) {                            //å»é™¤é¦–ä½çš„0
         --j;
     }
 
@@ -57,34 +57,34 @@ int Str2Int(string num, LongLongNum *arr) {
 }
 
 void MultipleTwoNum(LongLongNum *num1, LongLongNum *num2, int num1_len, int num2_len) {
-    LongLongNum *res = new LongLongNum[MAX_SIZE];                   //´æ´¢½á¹û
-    int num3_begin;                                                 //µ¹ĞòµÄ½á¹ûµÄÆğÊ¼Î»ÖÃ
+    LongLongNum *res = new LongLongNum[MAX_SIZE];                   //å­˜å‚¨ç»“æœ
+    int num3_begin;                                                 //å€’åºçš„ç»“æœçš„èµ·å§‹ä½ç½®
     int carry = 0;
 
-    for (int i = 0; i < MAX_SIZE; ++i) res[i].s = 0;                //³õÊ¼»¯
+    for (int i = 0; i < MAX_SIZE; ++i) res[i].s = 0;                //åˆå§‹åŒ–
 
-    if (num1_len == 0 || num2_len == 0) {                           //ÓĞÒ»¸öÊıÎª0£¬Ôò½á¹ûÎª0
+    if (num1_len == 0 || num2_len == 0) {                           //æœ‰ä¸€ä¸ªæ•°ä¸º0ï¼Œåˆ™ç»“æœä¸º0
         cout << "0" << endl;
         return;
     } else {
         for (int i = 0; i < num1_len; ++i) {
             carry = i;
             for (int j = 0; j < num2_len; ++j) {
-                res[carry].s += num1[i].s * num2[j].s;              //Ä£ÄâÊúÊ½ÔËËã£¬¸÷¸öÊıÎ»½»²æÏà³Ë
+                res[carry].s += num1[i].s * num2[j].s;              //æ¨¡æ‹Ÿç«–å¼è¿ç®—ï¼Œå„ä¸ªæ•°ä½äº¤å‰ç›¸ä¹˜
                 if (res[carry].s >= 1000000000) {
                     res[carry + 1].s += res[carry].s / 1000000000;
-                    res[carry].s %= 1000000000;                     //½á¹û³¬¹ıÊ®ÒÚ£¬½øÎ»
+                    res[carry].s %= 1000000000;                     //ç»“æœè¶…è¿‡åäº¿ï¼Œè¿›ä½
                 }
                 ++carry;
             }
         }
     }
 
-    if (res[carry].s != 0) num3_begin = carry;                      //»ñÈ¡½á¹ûµÄÆğÊ¼Î»ÖÃ
+    if (res[carry].s != 0) num3_begin = carry;                      //è·å–ç»“æœçš„èµ·å§‹ä½ç½®
     else num3_begin = carry - 1;
 
     cout << res[num3_begin].s;
-    for (int i = num3_begin - 1; i >= 0; --i) {                     //´¦ÀíÖĞ¼äÏî£¬²¹0
+    for (int i = num3_begin - 1; i >= 0; --i) {                     //å¤„ç†ä¸­é—´é¡¹ï¼Œè¡¥0
         switch (getLen(res[i].s)) {
             case 8:
                 cout << "0" << res[i].s;
@@ -123,7 +123,7 @@ void MultipleTwoNum(LongLongNum *num1, LongLongNum *num2, int num1_len, int num2
     delete[]res;
 }
 
-int getLen(long long num) {                                         //»ñÈ¡Ã¿×éÊıµÄÎ»Êı
+int getLen(long long num) {                                         //è·å–æ¯ç»„æ•°çš„ä½æ•°
     int len = 0;
 
     while (num > 0) {
