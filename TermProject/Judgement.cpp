@@ -1,46 +1,46 @@
 #include "my_function.h"
 
-//ÅĞ¶Ï»ù±¾¹¦ÄÜÊäÈë
+//åˆ¤æ–­åŸºæœ¬åŠŸèƒ½è¾“å…¥
 
 bool isLegalInput(string ori_infix) {
-    int leftParenNum = 0;                                           //¼ÇÂ¼À¨ºÅ¸öÊı
+    int leftParenNum = 0;                                           //è®°å½•æ‹¬å·ä¸ªæ•°
     int rightParenNum = 0;
-    int integer_len = 0;                                            //¼ÇÂ¼Êı¾İ³¤¶È
+    int integer_len = 0;                                            //è®°å½•æ•°æ®é•¿åº¦
 
-    for (int i = 0; i < ori_infix.length(); ++i) {                  //É¾³ı¿Õ¸ñ
+    for (int i = 0; i < ori_infix.length(); ++i) {                  //åˆ é™¤ç©ºæ ¼
         if (ori_infix[i] == ' ') {
             ori_infix.erase(i, 1);
             --i;
         }
     }
 
-    if (ori_infix.length() == 0) {                                  //ÅĞ¶ÏÊÇ·ñÊäÈë
+    if (ori_infix.length() == 0) {                                  //åˆ¤æ–­æ˜¯å¦è¾“å…¥
         cout << "Please enter the expression!\n";
         return false;
     }
 
-    if (getPriority(ori_infix[0]) > 0 && ori_infix.length() == 1) { //µÚÒ»Î»Ö»ÓĞÒ»¸ö·ûºÅ
+    if (getPriority(ori_infix[0]) > 0 && ori_infix.length() == 1) { //ç¬¬ä¸€ä½åªæœ‰ä¸€ä¸ªç¬¦å·
         cout << "Operator missing operand!\n";
         return false;
     }
 
-    if (ori_infix[0] == '*' || ori_infix[0] == '%') {               //µÚÒ»Î»ÊÇ·ûºÅµ«²»ÊÇ¼õºÅ
+    if (ori_infix[0] == '*' || ori_infix[0] == '%') {               //ç¬¬ä¸€ä½æ˜¯ç¬¦å·ä½†ä¸æ˜¯å‡å·
         cout << "Operator missing operand!\n";
         return false;
     }
 
     if (getPriority(ori_infix.back()) == 2 || getPriority(ori_infix.back()) == 3) {
-        cout << "Operator missing operand!\n";                      //×îºóÒ»Î»ÊÇÔËËã·û
+        cout << "Operator missing operand!\n";                      //æœ€åä¸€ä½æ˜¯è¿ç®—ç¬¦
         return false;
     }
 
     for (int i = 0; i < ori_infix.length(); ++i) {
-        if (ori_infix[i] < 0) {                                     //¼ì²éÊÇ·ñÊÇÓ¢ÎÄ×´Ì¬ÏÂÊäÈë
+        if (ori_infix[i] < 0) {                                     //æ£€æŸ¥æ˜¯å¦æ˜¯è‹±æ–‡çŠ¶æ€ä¸‹è¾“å…¥
             cout << "Please enter expressions in English!\n";
             return false;
         }
 
-        if (ori_infix[i] < '0' || ori_infix[i] > '9') {             //¼ì²éÔËËã·û
+        if (ori_infix[i] < '0' || ori_infix[i] > '9') {             //æ£€æŸ¥è¿ç®—ç¬¦
             switch (ori_infix[i]) {
                 case '(':
                 case ')':
@@ -58,19 +58,19 @@ bool isLegalInput(string ori_infix) {
         if (i >= 1) {
             if ((getPriority(ori_infix[i]) == 2 || getPriority(ori_infix[i]) == 3) &&
                 (getPriority(ori_infix[i - 1]) == 2 || getPriority(ori_infix[i - 1]) == 3)) {
-                //Á¬ĞøÁ½¸öÔËËã·û
+                //è¿ç»­ä¸¤ä¸ªè¿ç®—ç¬¦
                 cout << "Operator missing operand!\n";
                 return false;
             }
 
             if (ori_infix[i - 1] == '(' && getPriority(ori_infix[i]) > 2) {
-                //×óÀ¨ºÅ¼ÓÔËËã·û£¬³ıÈ¥(-1)ÀàĞÍ
+                //å·¦æ‹¬å·åŠ è¿ç®—ç¬¦ï¼Œé™¤å»(-1)ç±»å‹
                 cout << "Operator missing operand!\n";
                 return false;
             }
 
             if (getPriority(ori_infix[i - 1]) > 0 && ori_infix[i - 1] != ')' && ori_infix[i] == ')') {
-                //ÔËËã·û¼ÓÓÒÀ¨ºÅ
+                //è¿ç®—ç¬¦åŠ å³æ‹¬å·
                 cout << "Operator missing operand!\n";
                 return false;
             }
@@ -79,12 +79,12 @@ bool isLegalInput(string ori_infix) {
         if (ori_infix[i] >= '0' && ori_infix[i] <= '9') integer_len++;
         else integer_len = 0;
 
-        if (integer_len > 10) {                                     //ÅĞ¶ÏÊı×Ö³¤¶È
+        if (integer_len > 10) {                                     //åˆ¤æ–­æ•°å­—é•¿åº¦
             cout << "Number out of range!\n";
             return false;
         }
 
-        if (ori_infix[i] == '(') ++leftParenNum;                    //¼ÇÂ¼À¨ºÅÊıÁ¿
+        if (ori_infix[i] == '(') ++leftParenNum;                    //è®°å½•æ‹¬å·æ•°é‡
         else if (ori_infix[i] == ')') ++rightParenNum;
     }
 
@@ -96,28 +96,28 @@ bool isLegalInput(string ori_infix) {
     return true;
 }
 
-//ÅĞ¶Ï½ø½×¹¦ÄÜÊäÈë
+//åˆ¤æ–­è¿›é˜¶åŠŸèƒ½è¾“å…¥
 
 bool isLegalMulInput(string total) {
-    int mulNum = 0;                                                 //³ËºÅ¸öÊı
+    int mulNum = 0;                                                 //ä¹˜å·ä¸ªæ•°
 
-    if (total.length() == 0) {                                      //ÅĞ¶ÏÊÇ·ñÊäÈë
+    if (total.length() == 0) {                                      //åˆ¤æ–­æ˜¯å¦è¾“å…¥
         cout << "Please enter the expression!\n";
         return false;
     }
 
-    if (total[0] == '*') {                                          //ÊÇ·ñÊäÈëµÚÒ»¸ö³ËÊı
+    if (total[0] == '*') {                                          //æ˜¯å¦è¾“å…¥ç¬¬ä¸€ä¸ªä¹˜æ•°
         cout << "Please enter the first multiplier!\n";
         return false;
     }
 
-    if (total[total.length() - 1] == '*') {                         //ÊÇ·ñÊäÈëµÚ¶ş¸ö³ËÊı
+    if (total[total.length() - 1] == '*') {                         //æ˜¯å¦è¾“å…¥ç¬¬äºŒä¸ªä¹˜æ•°
         cout << "Please enter the second multiplier!\n";
         return false;
     }
 
     for (char i: total) {
-        if (i < '0' || i > '9') {                                   //¼ì²éÔËËã·û
+        if (i < '0' || i > '9') {                                   //æ£€æŸ¥è¿ç®—ç¬¦
             if (i == '*') {
                 ++mulNum;
             } else {
