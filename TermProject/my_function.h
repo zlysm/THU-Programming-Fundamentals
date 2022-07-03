@@ -11,36 +11,36 @@ using namespace std;
 
 #define MAX_SIZE 1000000
 
-struct LongLongNum {                                                 //´æ´¢long longÀàĞÍ
+struct LongLongNum {                                                 //å­˜å‚¨long longç±»å‹
     long long s;
 };
 
-//ÊäÈë
+//è¾“å…¥
 
 void Input();
 
-//»ù±¾¹¦ÄÜ
+//åŸºæœ¬åŠŸèƒ½
 
-extern bool isModuloZero;                                            //ÅĞ¶ÏÊÇ·ñ¶Ô0È¡Óà
+extern bool isModuloZero;                                            //åˆ¤æ–­æ˜¯å¦å¯¹0å–ä½™
 
-int getPriority(char s);                                             //»ñÈ¡ÔËËã·ûÓÅÏÈ¼¶
+int getPriority(char s);                                             //è·å–è¿ç®—ç¬¦ä¼˜å…ˆçº§
 
-bool isLegalInput(string ori_infix);                                 //ÅĞ¶ÏÊäÈëÊÇ·ñºÏ·¨
+bool isLegalInput(string ori_infix);                                 //åˆ¤æ–­è¾“å…¥æ˜¯å¦åˆæ³•
 
-char *Infix2Postfix(string ori_infix);                               //ÖĞ×º±í´ïÊ½×ªºó×º±í´ïÊ½
+char *Infix2Postfix(string ori_infix);                               //ä¸­ç¼€è¡¨è¾¾å¼è½¬åç¼€è¡¨è¾¾å¼
 
-long long Calculate(char *postfix);                                  //¼ÆËãºó×º±í´ïÊ½
+long long Calculate(char *postfix);                                  //è®¡ç®—åç¼€è¡¨è¾¾å¼
 
-void showName();                                                     //ÏÔÊ¾ĞÅÏ¢
+void showName();                                                     //æ˜¾ç¤ºä¿¡æ¯
 
-//½ø½×¹¦ÄÜ
+//è¿›é˜¶åŠŸèƒ½
 
-int Str2Int(string num, LongLongNum *arr);                           //½«Êı¾İµ¹ĞòËÄÎ»Ò»×é×ª»¯
+int Str2Int(string num, LongLongNum *arr);                           //å°†æ•°æ®å€’åºå››ä½ä¸€ç»„è½¬åŒ–
 
-void MultipleTwoNum(LongLongNum *num1, LongLongNum *num2, int num1_len, int num2_len);  //³Ë·¨ÔËËã²¢Êä³ö
+void MultipleTwoNum(LongLongNum *num1, LongLongNum *num2, int num1_len, int num2_len);  //ä¹˜æ³•è¿ç®—å¹¶è¾“å‡º
 
-int getLen(long long num);                                           //»ñÈ¡Êı×Ö³¤¶È
+int getLen(long long num);                                           //è·å–æ•°å­—é•¿åº¦
 
-bool isLegalMulInput(string total);                                  //ÅĞ¶Ï³Ë·¨ÊäÈëÊÇ·ñºÏ·¨
+bool isLegalMulInput(string total);                                  //åˆ¤æ–­ä¹˜æ³•è¾“å…¥æ˜¯å¦åˆæ³•
 
 #endif
