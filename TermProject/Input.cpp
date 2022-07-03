@@ -1,7 +1,7 @@
 #include "my_function.h"
 
 void Input() {
-    string whichFunc;                                                //ÅĞ¶ÏÄÄÖÖ¹¦ÄÜ
+    string whichFunc;                                                //åˆ¤æ–­å“ªç§åŠŸèƒ½
 
     cout << "Please select a function:\n"
             "1--Basic Function: calculate the expression.\n"
@@ -19,8 +19,8 @@ void Input() {
                         "Please enter the expression:\n";
                 getline(cin, ori_infix);
 
-                if (isLegalInput(ori_infix)) {                       //¼ì²éÊäÈë
-                    //±í´ïÊ½×ª»»²¢¼ÆËã
+                if (isLegalInput(ori_infix)) {                       //æ£€æŸ¥è¾“å…¥
+                    //è¡¨è¾¾å¼è½¬æ¢å¹¶è®¡ç®—
                     long long res = Calculate(Infix2Postfix(ori_infix));
                     if (!isModuloZero) {
                         cout << "The result is:\n" << res << endl;
@@ -37,16 +37,16 @@ void Input() {
                         "Please enter the multiplication expression(e.g. 2 * 3):\n";
                 getline(cin, total);
 
-                for (int i = 0; i < total.length(); ++i) {           //É¾³ı¿Õ¸ñ
+                for (int i = 0; i < total.length(); ++i) {           //åˆ é™¤ç©ºæ ¼
                     if (total[i] == ' ') {
                         total.erase(i, 1);
                         --i;
                     }
                 }
 
-                if (isLegalMulInput(total)) {                        //¼ì²éÊäÈë
+                if (isLegalMulInput(total)) {                        //æ£€æŸ¥è¾“å…¥
                     for (char i: total) {
-                        if (i == '*') {                              //ÅĞ¶ÏÊÇ·ñµ½µÚ¶ş¸öÊı
+                        if (i == '*') {                              //åˆ¤æ–­æ˜¯å¦åˆ°ç¬¬äºŒä¸ªæ•°
                             isNum2 = true;
                         }
                         if (!isNum2) {
@@ -59,12 +59,12 @@ void Input() {
                     LongLongNum *num1_arr = new LongLongNum[MAX_SIZE];
                     LongLongNum *num2_arr = new LongLongNum[MAX_SIZE];
 
-                    for (int i = 0; i < MAX_SIZE; ++i) {             //³õÊ¼»¯
+                    for (int i = 0; i < MAX_SIZE; ++i) {             //åˆå§‹åŒ–
                         num1_arr[i].s = 0;
                         num2_arr[i].s = 0;
                     }
 
-                    int num1_len = Str2Int(num1, num1_arr);          //»ñÈ¡µ¹Ğòºó×î¸ßÎ»Êı×ÖÎ»ÖÃ
+                    int num1_len = Str2Int(num1, num1_arr);          //è·å–å€’åºåæœ€é«˜ä½æ•°å­—ä½ç½®
                     int num2_len = Str2Int(num2, num2_arr);
 
                     cout << "The result is:" << endl;
